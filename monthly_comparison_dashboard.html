@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة المقارنة التفاعلية — شهر يوليو مقابل شهر أغسطس 2026 | UMI Group</title>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Chart.js for Interactive Visual Analytics -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root {
+  --c-brand:       #be0463;
+  --c-brand-dark:  #800040;
+  --c-brand-light: #ff4db8;
+  --c-blue:        #3b82f6;
+  --c-purple:      #8b5cf6;
+  --c-green:       #10b981;
+  --c-amber:       #f59e0b;
+  --c-red:         #ef4444;
+  --c-dark:        #0a0e17;
+  --c-dark2:       #111827;
+  --c-dark3:       #1f2937;
+  --c-card-border: rgba(255,255,255,0.08);
+  --c-text:        #f9fafb;
+  --c-muted:       #9ca3af;
+  --c-dim:         #4b5563;
+  --grad-brand:    linear-gradient(135deg, #ff4db8 0%, #be0463 50%, #800040 100%);
+  --grad-green:    linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  --grad-blue:     linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  --grad-purple:   linear-gradient(135deg, #c084fc 0%, #8b5cf6 100%);
+  --radius-xl:     24px;
+  --radius-2xl:    32px;
+  --shadow-card:   0 14px 40px rgba(0,0,0,0.55);
+  --shadow-glow:   0 0 35px rgba(190,4,99,0.3);
+  --transition:    all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--c-dark);
+  color: var(--c-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body.en { font-family: 'Inter', sans-serif; }
+
+/* DYNAMIC BACKGROUND */
+.bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.bg-canvas::before {
+  content: ''; position: absolute; inset: -50%;
+  background:
+    radial-gradient(ellipse 75% 55% at 15% 15%, rgba(190,4,99,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 50% at 85% 85%, rgba(59,130,246,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 50% 50%, rgba(16,185,129,0.08) 0%, transparent 50%);
+  animation: bgPulse 22s ease-in-out infinite alternate;
+}
+@keyframes bgPulse {
+  0% { transform: translate(0,0) scale(1); }
+  100% { transform: translate(3%,2%) scale(1.04); }
+}
+.bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.container { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+/* NAVBAR */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  padding: 1rem 2rem;
+  background: rgba(10,14,23,0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--c-card-border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.nav-brand { display: flex; align-items: center; gap: 1rem; }
+.nav-logo-badge {
+  background: var(--grad-brand); color: #fff; font-weight: 900; font-family: 'Orbitron', sans-serif;
+  padding: 7px 16px; border-radius: 12px; font-size: 1.15rem; letter-spacing: 1.5px;
+  box-shadow: 0 0 22px rgba(190,4,99,0.5);
+}
+.nav-title-main { font-size: 1.4rem; font-weight: 900; background: var(--grad-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-title-sub { font-size: 0.68rem; color: var(--c-muted); letter-spacing: 3px; font-weight: 700; text-transform: uppercase; }
+
+.nav-actions { display: flex; align-items: center; gap: 0.85rem; }
+.lang-toggle { display: flex; background: var(--c-dark2); border: 1px solid var(--c-card-border); border-radius: 50px; padding: 3px; }
+.lang-btn {
+  background: none; border: none; color: var(--c-muted); font-size: 0.8rem; font-weight: 700;
+  padding: 0.35rem 0.85rem; border-radius: 50px; cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.lang-btn.active { background: var(--c-brand); color: #fff; box-shadow: 0 0 14px rgba(190,4,99,0.5); }
+
+.nav-link-btn {
+  display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 1.1rem;
+  background: var(--c-dark3); border: 1px solid var(--c-card-border); border-radius: 50px;
+  color: var(--c-text); font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: var(--transition);
+}
+.nav-link-btn:hover { border-color: var(--c-brand); color: #ff80c0; }
+
+/* HERO */
+.hero { text-align: center; padding: 3.5rem 1rem 2.5rem; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3);
+  padding: 0.45rem 1.25rem; border-radius: 50px; font-size: 0.82rem; font-weight: 800; color: #34d399;
+  margin-bottom: 1.25rem; font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+}
+.hero-title { font-size: clamp(2.1rem, 4.5vw, 3.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 1rem; }
+.hero-title .grad-accent { background: var(--grad-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-desc { font-size: 1.05rem; color: var(--c-muted); max-width: 860px; margin: 0 auto 1.75rem; line-height: 1.7; }
+
+/* SUMMARY PEAK HERO CARDS */
+.peak-cards-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem; margin-bottom: 3rem;
+}
+.peak-card {
+  position: relative; overflow: hidden;
+  background: var(--c-dark2); border: 1px solid var(--c-card-border);
+  border-radius: var(--radius-xl); padding: 1.75rem 1.4rem;
+  transition: var(--transition);
+}
+.peak-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.2); box-shadow: var(--shadow-card); }
+.peak-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.peak-icon {
+  width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+}
+.peak-badge-up {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3);
+  color: #34d399; font-size: 0.85rem; font-weight: 800; font-family: 'Outfit', sans-serif;
+  padding: 0.3rem 0.75rem; border-radius: 50px;
+}
+.peak-title { font-size: 0.88rem; color: var(--c-muted); font-weight: 700; margin-bottom: 0.4rem; }
+.peak-comparison-row { display: flex; align-items: baseline; justify-content: space-between; margin-top: 0.5rem; }
+.peak-val-current { font-size: 2.2rem; font-weight: 900; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1; }
+.peak-val-previous { font-size: 1.1rem; color: var(--c-muted); font-family: 'Outfit', sans-serif; text-decoration: line-through; }
+.peak-subtext { font-size: 0.78rem; color: #6ee7b7; font-weight: 700; margin-top: 0.5rem; }
+
+/* PANELS */
+.glass-panel {
+  background: var(--c-dark2); border: 1px solid var(--c-card-border);
+  border-radius: var(--radius-2xl); padding: 2.5rem; margin-bottom: 2.5rem;
+}
+@media(max-width:768px) { .glass-panel { padding: 1.5rem; } }
+
+.section-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+.section-head-title { display: flex; align-items: center; gap: 1rem; }
+.section-head-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; }
+.section-tag { font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--c-muted); font-family: 'Orbitron', sans-serif; }
+.section-main-title { font-size: 1.5rem; font-weight: 900; color: #fff; }
+
+/* CHART CONTAINER */
+.chart-box {
+  position: relative; background: var(--c-dark3); border: 1px solid var(--c-card-border);
+  border-radius: var(--radius-xl); padding: 1.75rem; margin-bottom: 2rem;
+  height: 380px; width: 100%;
+}
+@media(max-width:768px) { .chart-box { height: 300px; padding: 1rem; } }
+
+/* COMPARISON MATRIX TABLE */
+.table-wrap { overflow-x: auto; border-radius: var(--radius-xl); border: 1px solid var(--c-card-border); margin-bottom: 1.75rem; }
+table { width: 100%; border-collapse: collapse; min-width: 680px; font-size: 0.92rem; }
+thead tr { background: linear-gradient(135deg, rgba(190,4,99,0.18), rgba(59,130,246,0.12)); border-bottom: 1px solid rgba(190,4,99,0.3); }
+th { padding: 1.1rem 1.25rem; font-weight: 800; font-size: 0.85rem; color: var(--c-muted); white-space: nowrap; text-align: inherit; }
+td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--c-card-border); vertical-align: middle; color: var(--c-muted); }
+tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+.cell-delta-up { color: #34d399; font-weight: 800; font-family: 'Outfit', sans-serif; display: inline-flex; align-items: center; gap: 0.25rem; }
+.cell-val { font-weight: 800; color: #fff; font-family: 'Outfit', sans-serif; }
+
+/* HIGHLIGHT BARS & CARDS */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.75rem; }
+@media(max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+.insight-card {
+  background: var(--c-dark3); border: 1px solid var(--c-card-border);
+  border-radius: var(--radius-xl); padding: 1.75rem; position: relative; overflow: hidden;
+}
+.insight-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.insight-card-title { font-size: 1.1rem; font-weight: 800; color: #fff; }
+
+.driver-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+.driver-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--c-muted); line-height: 1.6; }
+.driver-list li i { color: #ff4db8; margin-top: 5px; flex-shrink: 0; }
+
+footer { text-align: center; padding: 3.5rem 2rem 2rem; border-top: 1px solid var(--c-card-border); margin-top: 2rem; }
+.footer-logo { font-size: 1.8rem; font-weight: 900; background: var(--grad-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+
+.en-only { display: none; }
+.ar-only { display: inline; }
+</style>
+</head>
+
+<body>
+<div class="bg-canvas"><div class="bg-grid"></div></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-badge">UMI</div>
+    <div>
+      <div class="nav-title-main">UMI GROUP</div>
+      <div class="nav-title-sub">GROWTH PERFORMANCE AUDIT</div>
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-ar" onclick="setLang('ar')">🇸🇦 AR</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">🇬🇧 EN</button>
+    </div>
+    <a href="july_report.html" class="nav-link-btn"><i class="fa-solid fa-file-lines"></i> <span class="ar-only">تقرير يوليو</span><span class="en-only">July Report</span></a>
+    <a href="august_report.html" class="nav-link-btn"><i class="fa-solid fa-file-lines"></i> <span class="ar-only">تقرير أغسطس</span><span class="en-only">August Report</span></a>
+  </div>
+</nav>
+
+<!-- CONTAINER -->
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">
+      <i class="fa-solid fa-arrow-trend-up"></i>
+      <span class="ar-only">تحليل بيكات النمو والتقدم (MoM Growth)</span>
+      <span class="en-only">Month-over-Month Growth & Peak Audit</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="ar-only">مقارنة أداء <span class="grad-accent">شهر يوليو مقابل شهر أغسطس 2026</span></span>
+      <span class="en-only">Performance Benchmark: <span class="grad-accent">July vs August 2026</span></span>
+    </h1>
+    <p class="hero-desc">
+      <span class="ar-only">داشبورد تفاعلي يقيس التطور الفعلي في حركة زوار الموقع (GA4)، وصول منصات ميتا، تفاعلات خرائط جوجل، ومؤشرات التحول المباشرة، لمعرفة مؤشرات الصعود والبيكات القياسية المحققة.</span>
+      <span class="en-only">Executive interactive dashboard measuring real growth peaks across website users (GA4), Meta ecosystem impressions, Google Maps interactions, and high-intent commercial leads.</span>
+    </p>
+  </div>
+
+  <!-- PEAK GROWTH KPI CARDS -->
+  <div class="peak-cards-grid">
+    <!-- Card 1: Website Users -->
+    <div class="peak-card">
+      <div class="peak-card-header">
+        <div class="peak-icon" style="background:rgba(59,130,246,0.15); color:#3b82f6;"><i class="fa-solid fa-users"></i></div>
+        <div class="peak-badge-up"><i class="fa-solid fa-arrow-trend-up"></i> +68.6%</div>
+      </div>
+      <div class="peak-title">
+        <span class="ar-only">زوار الموقع الفعليين (GA4 Users)</span>
+        <span class="en-only">GA4 Website Active Users</span>
+      </div>
+      <div class="peak-comparison-row">
+        <span class="peak-val-current">3,120</span>
+        <span class="peak-val-previous">1,850</span>
+      </div>
+      <div class="peak-subtext"><i class="fa-solid fa-circle-check"></i> <span class="ar-only">بيك صعود: +1,270 مستخدم جديد</span><span class="en-only">Peak Surge: +1,270 New Users</span></div>
+    </div>
+
+    <!-- Card 2: Instagram Views -->
+    <div class="peak-card">
+      <div class="peak-card-header">
+        <div class="peak-icon" style="background:rgba(236,72,153,0.15); color:#ec4899;"><i class="fa-brands fa-instagram"></i></div>
+        <div class="peak-badge-up"><i class="fa-solid fa-arrow-trend-up"></i> +71.6%</div>
+      </div>
+      <div class="peak-title">
+        <span class="ar-only">مشاهدات إنستجرام ريلز (IG Views)</span>
+        <span class="en-only">Instagram Content Views</span>
+      </div>
+      <div class="peak-comparison-row">
+        <span class="peak-val-current">223K</span>
+        <span class="peak-val-previous">130K</span>
+      </div>
+      <div class="peak-subtext"><i class="fa-solid fa-circle-check"></i> <span class="ar-only">بيك فيروسي: 96.9% لغير المتابعين</span><span class="en-only">Viral Reach: 96.9% Non-Followers</span></div>
+    </div>
+
+    <!-- Card 3: Website Sessions -->
+    <div class="peak-card">
+      <div class="peak-card-header">
+        <div class="peak-icon" style="background:rgba(139,92,246,0.15); color:#8b5cf6;"><i class="fa-solid fa-bolt"></i></div>
+        <div class="peak-badge-up"><i class="fa-solid fa-arrow-trend-up"></i> +62.2%</div>
+      </div>
+      <div class="peak-title">
+        <span class="ar-only">إجمالي الجلسات (Total Sessions)</span>
+        <span class="en-only">Total Website Sessions</span>
+      </div>
+      <div class="peak-comparison-row">
+        <span class="peak-val-current">3,925</span>
+        <span class="peak-val-previous">2,420</span>
+      </div>
+      <div class="peak-subtext"><i class="fa-solid fa-circle-check"></i> <span class="ar-only">ارتفاع قياسي في التكرار والزيارات</span><span class="en-only">Record session frequency surge</span></div>
+    </div>
+
+    <!-- Card 4: Maps Website Clicks -->
+    <div class="peak-card">
+      <div class="peak-card-header">
+        <div class="peak-icon" style="background:rgba(16,185,129,0.15); color:#10b981;"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="peak-badge-up"><i class="fa-solid fa-arrow-trend-up"></i> +19.7%</div>
+      </div>
+      <div class="peak-title">
+        <span class="ar-only">نقرات الموقع من خرائط جوجل</span>
+        <span class="en-only">Google Maps Website Clicks</span>
+      </div>
+      <div class="peak-comparison-row">
+        <span class="peak-val-current">79</span>
+        <span class="peak-val-previous">66</span>
+      </div>
+      <div class="peak-subtext"><i class="fa-solid fa-circle-check"></i> <span class="ar-only">نمو مستمر في الباحثين المحليين</span><span class="en-only">Continuous local intent growth</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: INTERACTIVE CHART -->
+  <div class="glass-panel">
+    <div class="section-head">
+      <div class="section-head-title">
+        <div class="section-head-icon" style="background:rgba(190,4,99,0.15); color:#ff4db8;"><i class="fa-solid fa-chart-simple"></i></div>
+        <div>
+          <div class="section-tag"><span class="ar-only">المقارنة الرقمية التفاعلية</span><span class="en-only">Visual Growth Comparison</span></div>
+          <div class="section-main-title"><span class="ar-only">رسم بياني: بيكات الأداء لشهر يوليو وشهر أغسطس 2026</span><span class="en-only">Chart: July vs August 2026 Performance Peaks</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="growthComparisonChart"></canvas>
+    </div>
+
+    <!-- TABLE OF COMPARISON -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="ar-only">المؤشر الرئيسي (Metric)</span><span class="en-only">Performance Metric</span></th>
+            <th><span class="ar-only">شهر يوليو 2026 (شهر 7)</span><span class="en-only">July 2026 (Month 7)</span></th>
+            <th><span class="ar-only">شهر أغسطس 2026 (شهر 8)</span><span class="en-only">August 2026 (Month 8)</span></th>
+            <th><span class="ar-only">نسبة النمو / الفرق (MoM Growth)</span><span class="en-only">Delta %</span></th>
+            <th><span class="ar-only">حالة المؤشر والبيك</span><span class="en-only">Status & Trend</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong><span class="ar-only">مستخدمو الموقع (GA4 Users)</span><span class="en-only">Website Users (GA4)</span></strong></td>
+            <td class="cell-val">1,850</td>
+            <td class="cell-val" style="color:#ff80c0;">3,120</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +68.6%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ بيك صعود قياسي (All-Time High)</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">جلسات الموقع (GA4 Sessions)</span><span class="en-only">Website Sessions (GA4)</span></strong></td>
+            <td class="cell-val">2,420</td>
+            <td class="cell-val" style="color:#ff80c0;">3,925</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +62.2%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ نمو ملحوظ في الزيارات</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">مشاهدات إنستجرام (IG Content Views)</span><span class="en-only">Instagram Views</span></strong></td>
+            <td class="cell-val">130,000</td>
+            <td class="cell-val" style="color:#ff80c0;">223,112</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +71.6%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ انفجار فيروسي في الريلز (Reels Surge)</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">زيارات بروفايل إنستجرام (Profile Visits)</span><span class="en-only">Instagram Profile Visits</span></strong></td>
+            <td class="cell-val">3,400</td>
+            <td class="cell-val" style="color:#ff80c0;">5,191</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +52.7%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ اهتمام استثنائي بالعلامة التجارية</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">مشاهدات فيسبوك (FB Video & Reels)</span><span class="en-only">Facebook Views</span></strong></td>
+            <td class="cell-val">85,000</td>
+            <td class="cell-val" style="color:#ff80c0;">139,339</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +63.9%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ صعود قوي وتفاعل 1,136</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">نقرات الموقع من خرائط جوجل (Google Maps)</span><span class="en-only">Google Maps Website Clicks</span></strong></td>
+            <td class="cell-val">66</td>
+            <td class="cell-val" style="color:#ff80c0;">79</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +19.7%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ صعود ثابت في النوايا المحلية بدبي</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">ظهور بروفايل خرائط جوجل (GBP Views)</span><span class="en-only">GBP Total Views</span></strong></td>
+            <td class="cell-val">510</td>
+            <td class="cell-val" style="color:#ff80c0;">592</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-arrow-up"></i> +16.1%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ زيادة ظهور مصنع ومكتب القوز</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="ar-only">إحالات محركات الذكاء الاصطناعي (ChatGPT)</span><span class="en-only">AI Engine Referrals (ChatGPT)</span></strong></td>
+            <td class="cell-val">0 (لم تكن مسجلة)</td>
+            <td class="cell-val" style="color:#ff80c0;">36 زيارة مباشرة</td>
+            <td><span class="cell-delta-up"><i class="fa-solid fa-bolt"></i> بيك جديد 100%</span></td>
+            <td><span style="color:#34d399; font-weight:700;">▲ تفاعل فائق 63.89% وتصدر Perplexity #1</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY THE PEAK HAPPENED (STRATEGIC DRIVERS) -->
+  <div class="two-col">
+    <div class="insight-card">
+      <div class="insight-card-header">
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(16,185,129,0.15); display:flex; align-items:center; justify-content:center; color:#34d399; font-size:1.2rem;">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+        </div>
+        <div class="insight-card-title"><span class="ar-only">أسباب البيك والقفزة الكبيرة في أغسطس</span><span class="en-only">Key Growth Drivers in August</span></div>
+      </div>
+      <ul class="driver-list">
+        <li>
+          <i class="fa-solid fa-check"></i>
+          <span><strong style="color:#fff;">تأثير الـ GEO والذكاء الاصطناعي:</strong> تطبيق هيكلة Schema.org والتسعير المخصص رفع ترتيب UMI وتصدرها المركز الأول على Perplexity AI وجلب زوار حقيقيين من ChatGPT.</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-check"></i>
+          <span><strong style="color:#fff;">انتشار فيروسي لمقاطع Reels:</strong> استراتيجية نشر مقاطع فيديو التنفيذ ومصنع القوز حققت 223 ألف مشاهدة على إنستجرام مع 96.9% وصول لغير المتابعين.</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-check"></i>
+          <span><strong style="color:#fff;">بدء العد التنازلي لمعرض GITEX 2026:</strong> بدء الشركات العارضة بالبحث المكثف عن مقاولي أجنحة المعارض في دبي، مما ضاعف زوار الموقع إلى 3,120 زائر.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-card-header">
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(59,130,246,0.15); display:flex; align-items:center; justify-content:center; color:#3b82f6; font-size:1.2rem;">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <div class="insight-card-title"><span class="ar-only">توصيات شهر سبتمبر للحفاظ على الصعود</span><span class="en-only">Recommendations for September</span></div>
+      </div>
+      <ul class="driver-list">
+        <li>
+          <i class="fa-solid fa-arrow-right"></i>
+          <span><strong style="color:#fff;">تحويل زوار الريلز إلى ليدز:</strong> إضافة زر WhatsApp المباشر ورابط صفحة الهبوط في كل Reel منشور على إنستجرام وفيسبوك لاستغلال الـ 5,191 زيارة بروفايل.</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-arrow-right"></i>
+          <span><strong style="color:#fff;">حملات إعادة استهداف (Retargeting):</strong> استهداف الـ 3,120 زائر الذين دخلوا الموقع في أغسطس بإعلانات موجهة لعروض أسعار أجنحة GITEX Global 2026.</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-arrow-right"></i>
+          <span><strong style="color:#fff;">حصد مراجعات Google Maps:</strong> جمع مراجعات جديدة لرفع تفاعلات بروفايل القوز وتجاوز حاجز الـ 100 نقرة شهرية للموقع.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">UMI GROUP</div>
+  <div style="font-size:0.85rem; color:var(--c-muted);">
+    <span class="ar-only">لوحة مقارنة الأداء والبيكات (يوليو مقابل أغسطس 2026) — أُعدت للإدارة والقيادة التنفيذية</span>
+    <span class="en-only">Month-over-Month Growth & Peak Audit (July vs August 2026) | UMI Group Executive Dashboard</span>
+  </div>
+</footer>
+
+<script>
+// Language switcher
+function setLang(lang) {
+  var root = document.getElementById('html-root');
+  var btnAr = document.getElementById('btn-ar');
+  var btnEn = document.getElementById('btn-en');
+  var arElems = document.querySelectorAll('.ar-only');
+  var enElems = document.querySelectorAll('.en-only');
+
+  if (lang === 'en') {
+    root.setAttribute('dir', 'ltr');
+    root.setAttribute('lang', 'en');
+    document.body.classList.add('en');
+    btnEn.classList.add('active');
+    btnAr.classList.remove('active');
+    arElems.forEach(function(el){ el.style.display = 'none'; });
+    enElems.forEach(function(el){ el.style.display = 'inline'; });
+  } else {
+    root.setAttribute('dir', 'rtl');
+    root.setAttribute('lang', 'ar');
+    document.body.classList.remove('en');
+    btnAr.classList.add('active');
+    btnEn.classList.remove('active');
+    arElems.forEach(function(el){ el.style.display = 'inline'; });
+    enElems.forEach(function(el){ el.style.display = 'none'; });
+  }
+}
+
+// Chart.js Configuration
+document.addEventListener('DOMContentLoaded', function() {
+  var ctx = document.getElementById('growthComparisonChart').getContext('2d');
+  
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'Website Users (GA4)',
+        'Website Sessions',
+        'Instagram Views (K)',
+        'Instagram Profile Visits',
+        'Facebook Views (K)',
+        'Google Maps Clicks'
+      ],
+      datasets: [
+        {
+          label: 'شهر يوليو (July 2026)',
+          data: [1850, 2420, 130, 3400, 85, 66],
+          backgroundColor: 'rgba(59, 130, 246, 0.75)',
+          borderColor: '#3b82f6',
+          borderWidth: 1.5,
+          borderRadius: 8
+        },
+        {
+          label: 'شهر أغسطس (August 2026) — البيك 🚀',
+          data: [3120, 3925, 223, 5191, 139, 79],
+          backgroundColor: 'rgba(190, 4, 99, 0.85)',
+          borderColor: '#ff4db8',
+          borderWidth: 1.5,
+          borderRadius: 8
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#f9fafb',
+            font: { family: 'Cairo', size: 13, weight: 'bold' }
+          }
+        },
+        tooltip: {
+          backgroundColor: '#1f2937',
+          titleColor: '#ff80c0',
+          bodyColor: '#f9fafb',
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1,
+          padding: 12
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#9ca3af', font: { family: 'Cairo', weight: '600' } },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        },
+        y: {
+          ticks: { color: '#9ca3af', font: { family: 'Outfit', weight: '600' } },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
