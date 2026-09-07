@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +10,41 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
+      --bg-base: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --border-subtle: #e2e8f0;
+      --border-accent: rgba(190, 4, 99, 0.25);
+      --primary: #BE0463;
+      --primary-light: #d81b7a;
+      --primary-glow: rgba(190, 4, 99, 0.15);
+      --gold: #b48a1a;
+      --cyan: #0284c7;
+      --green: #059669;
+      --purple: #7c3aed;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --table-stripe: #f8fafc;
+      --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      --radius: 16px;
+    }
+
+    [data-theme="dark"] {
       --bg-base: #0a0a0f;
-      --bg-card: rgba(23, 23, 33, 0.75);
-      --bg-card-hover: rgba(32, 32, 48, 0.85);
+      --bg-card: rgba(23, 23, 33, 0.85);
+      --bg-card-hover: rgba(32, 32, 48, 0.95);
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-accent: rgba(190, 4, 99, 0.35);
-      --primary: #BE0463;
-      --primary-light: #e02882;
-      --primary-glow: rgba(190, 4, 99, 0.25);
       --gold: #D4AF37;
-      --gold-glow: rgba(212, 175, 55, 0.2);
       --cyan: #06b6d4;
       --green: #10b981;
       --purple: #8b5cf6;
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
-      --radius: 16px;
+      --table-stripe: rgba(255,255,255,0.02);
+      --card-shadow: 0 8px 32px rgba(0,0,0,0.37);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg-base);
@@ -35,58 +53,66 @@
       min-height: 100vh;
       line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 10% 15%, rgba(190, 4, 99, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 90% 85%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 10% 10%, rgba(190, 4, 99, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(180, 138, 26, 0.04) 0%, transparent 40%);
       background-attachment: fixed;
+      transition: background-color 0.3s, color 0.3s;
     }
-    body.en-mode { font-family: 'Plus Jakarta Sans', sans-serif; dir: ltr; }
-    .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+    body.en-mode { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .container { max-width: 1420px; margin: 0 auto; padding: 24px; }
+    
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 28px;
       background: var(--bg-card);
-      backdrop-filter: blur(16px);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
       margin-bottom: 24px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+      box-shadow: var(--card-shadow);
     }
     .brand-group { display: flex; align-items: center; gap: 18px; }
     .logo-badge {
-      background: linear-gradient(135deg, var(--primary), #600231);
+      background: linear-gradient(135deg, var(--primary), #800240);
       color: #fff;
       font-weight: 900;
-      font-size: 20px;
+      font-size: 22px;
       padding: 10px 18px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 12px var(--primary-glow);
     }
-    .header-titles h1 { font-size: 24px; font-weight: 800; color: #fff; }
-    .header-titles p { font-size: 13px; color: var(--text-muted); }
-    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .header-titles h1 { font-size: 23px; font-weight: 800; color: var(--text-main); }
+    .header-titles p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
     .pill-tag {
-      background: rgba(190, 4, 99, 0.15);
-      color: #f472b6;
+      background: rgba(190, 4, 99, 0.08);
+      color: var(--primary);
       border: 1px solid var(--border-accent);
-      padding: 6px 14px;
+      padding: 7px 14px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
     }
-    .lang-btn {
-      background: rgba(255,255,255,0.06);
+    .action-btn {
+      background: #f1f5f9;
       border: 1px solid var(--border-subtle);
-      color: #fff;
+      color: var(--text-main);
       padding: 8px 16px;
       border-radius: 10px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       transition: all 0.2s;
     }
-    .lang-btn:hover { background: rgba(255,255,255,0.12); border-color: var(--primary); }
+    [data-theme="dark"] .action-btn { background: rgba(255,255,255,0.06); color: #fff; }
+    .action-btn:hover { background: #e2e8f0; border-color: var(--primary); color: var(--primary); }
+    [data-theme="dark"] .action-btn:hover { background: rgba(255,255,255,0.12); }
     
     /* Top 7 Platforms KPI Grid */
     .kpi-grid {
@@ -97,51 +123,63 @@
     }
     .kpi-card {
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
       border: 1px solid var(--border-subtle);
-      padding: 18px;
+      padding: 20px 18px;
       border-radius: var(--radius);
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    .kpi-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .kpi-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 8px 25px -3px rgba(190, 4, 99, 0.12); }
     .kpi-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--primary), var(--gold));
     }
-    .kpi-icon { font-size: 22px; margin-bottom: 8px; display: inline-block; }
-    .kpi-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
-    .kpi-val { font-size: 26px; font-weight: 800; color: #fff; margin: 6px 0; }
-    .kpi-meta { font-size: 12px; display: flex; align-items: center; gap: 6px; }
+    .kpi-icon { font-size: 24px; margin-bottom: 6px; display: inline-block; }
+    .kpi-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+    .kpi-val { font-size: 27px; font-weight: 800; color: var(--text-main); margin: 6px 0; }
+    .kpi-meta { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
     .kpi-meta.green { color: var(--green); }
     .kpi-meta.gold { color: var(--gold); }
     .kpi-meta.cyan { color: var(--cyan); }
 
     /* Special Viral Insight Alert Box */
     .viral-banner {
-      background: linear-gradient(135deg, rgba(190, 4, 99, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
-      border: 1px solid rgba(190, 4, 99, 0.4);
+      background: linear-gradient(135deg, rgba(190, 4, 99, 0.08) 0%, rgba(124, 58, 237, 0.06) 100%);
+      border: 1px solid rgba(190, 4, 99, 0.25);
       border-radius: var(--radius);
       padding: 24px;
       margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 20px;
-      box-shadow: 0 8px 32px rgba(190, 4, 99, 0.15);
+      gap: 22px;
+      box-shadow: var(--card-shadow);
+    }
+    [data-theme="dark"] .viral-banner {
+      background: linear-gradient(135deg, rgba(190, 4, 99, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
+      border-color: rgba(190, 4, 99, 0.4);
     }
     .viral-icon {
-      font-size: 44px;
-      background: rgba(190, 4, 99, 0.3);
-      width: 70px; height: 70px;
-      border-radius: 16px;
+      font-size: 40px;
+      background: rgba(190, 4, 99, 0.12);
+      width: 72px; height: 72px;
+      border-radius: 18px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(190, 4, 99, 0.15);
     }
-    .viral-content h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 6px; }
-    .viral-content p { font-size: 14px; color: #e5e7eb; line-height: 1.6; }
+    .viral-content h3 { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+    .viral-content p { font-size: 14px; color: #334155; line-height: 1.65; }
+    [data-theme="dark"] .viral-content p { color: #e2e8f0; }
     .viral-tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .viral-chip { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 8px; color: #fdf2f8; }
+    .viral-chip {
+      background: rgba(190, 4, 99, 0.1);
+      border: 1px solid rgba(190, 4, 99, 0.25);
+      font-size: 12px; font-weight: 700;
+      padding: 5px 12px; border-radius: 8px;
+      color: var(--primary);
+    }
 
     /* Section Tabs */
     .tabs-nav {
@@ -152,10 +190,10 @@
       padding-bottom: 6px;
     }
     .tab-btn {
-      background: rgba(255,255,255,0.05);
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 10px 18px;
+      padding: 11px 20px;
       border-radius: 12px;
       cursor: pointer;
       font-weight: 700;
@@ -165,8 +203,9 @@
       gap: 8px;
       transition: all 0.2s;
       white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
-    .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .tab-btn:hover { color: var(--primary); border-color: var(--border-accent); }
     .tab-btn.active {
       background: var(--primary);
       border-color: var(--primary);
@@ -185,43 +224,55 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
-      padding: 22px;
-      backdrop-filter: blur(12px);
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+      transition: background-color 0.3s, border-color 0.3s;
     }
     .card-title {
       font-size: 16px;
       font-weight: 800;
-      color: #fff;
-      margin-bottom: 16px;
+      color: var(--text-main);
+      margin-bottom: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .card-title .badge { font-size: 11px; padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--gold); }
+    .card-title .badge {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      font-weight: 700;
+      border: 1px solid var(--border-subtle);
+    }
+    [data-theme="dark"] .card-title .badge { background: rgba(255,255,255,0.06); }
 
     /* Data Tables */
-    .table-wrap { overflow-x: auto; margin-top: 12px; }
+    .table-wrap { overflow-x: auto; margin-top: 10px; }
     table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: right; }
     body.en-mode table { text-align: left; }
     th {
-      background: rgba(255,255,255,0.04);
+      background: #f8fafc;
       color: var(--text-muted);
       font-weight: 700;
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border-subtle);
+      padding: 13px 15px;
+      border-bottom: 2px solid var(--border-subtle);
     }
+    [data-theme="dark"] th { background: rgba(255,255,255,0.04); }
     td {
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      color: #e5e7eb;
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-main);
     }
-    tr:hover td { background: rgba(255,255,255,0.02); }
-    .hl-col { font-weight: 800; color: #fff; }
-    .tag-cell { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; }
-    .tag-pink { background: rgba(190,4,99,0.2); color: #f472b6; }
-    .tag-blue { background: rgba(6,182,212,0.2); color: #67e8f9; }
-    .tag-green { background: rgba(16,185,129,0.2); color: #6ee7b7; }
-    .tag-gold { background: rgba(212,175,55,0.2); color: #fde047; }
+    tr:nth-child(even) td { background: var(--table-stripe); }
+    tr:hover td { background: rgba(190, 4, 99, 0.03); }
+    .hl-col { font-weight: 800; color: var(--text-main); }
+    .tag-cell { display: inline-block; padding: 4px 9px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+    .tag-pink { background: rgba(190,4,99,0.1); color: var(--primary); }
+    .tag-blue { background: rgba(2,132,199,0.1); color: var(--cyan); }
+    .tag-green { background: rgba(5,150,105,0.1); color: var(--green); }
+    .tag-gold { background: rgba(180,138,26,0.1); color: var(--gold); }
 
     /* Chart Containers */
     .chart-container { position: relative; height: 320px; width: 100%; }
@@ -230,13 +281,13 @@
     .stat-row {
       display: flex;
       justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-subtle);
       font-size: 13px;
     }
     .stat-row:last-child { border-bottom: none; }
-    .stat-label { color: var(--text-muted); }
-    .stat-val { font-weight: 700; color: #fff; }
+    .stat-label { color: var(--text-muted); font-weight: 600; }
+    .stat-val { font-weight: 800; color: var(--text-main); }
 
     @media (max-width: 900px) {
       .two-col { grid-template-columns: 1fr; }
@@ -259,7 +310,8 @@
     </div>
     <div class="header-actions">
       <span class="pill-tag">Jan 1 – Aug 31, 2026</span>
-      <button class="lang-btn" onclick="toggleLang()" id="lang-btn">English 🇬🇧</button>
+      <button class="action-btn" onclick="toggleTheme()" id="theme-btn">🌙 الداكن</button>
+      <button class="action-btn" onclick="toggleLang()" id="lang-btn">English 🇬🇧</button>
     </div>
   </header>
 
@@ -575,7 +627,7 @@
           <span class="stat-label">قناة الذكاء الاصطناعي الصاعدة (ChatGPT Traffic)</span>
           <span class="stat-val" style="color: var(--cyan);">114 زيارة بمعدل تفاعل استثنائي 46.5%</span>
         </div>
-        <div style="margin-top: 18px; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 10px; font-size: 13px; line-height: 1.6;">
+        <div style="margin-top: 18px; padding: 14px; background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 13px; line-height: 1.6;">
           📌 <strong>خلاصة الـ GA4:</strong> على الرغم من أن الإعلانات المدفوعة (Paid Social) تجلب حجماً كبيراً (5,029 زيارة)، إلا أن الزوار القادمين من <strong>البحث العضوي (SEO) ومحادثات الذكاء الاصطناعي (AI)</strong> هم الأكثر اهتماماً وجدية في طلب الخدمات وقضاء أطول وقت على الموقع.
         </div>
       </div>
@@ -752,7 +804,7 @@
           <span class="stat-label">أعلى منشور في الوصول (Top Post)</span>
           <span class="stat-val">منشور القصور الفاخرة (258,219 ظهور)</span>
         </div>
-        <div style="margin-top: 14px; padding: 12px; background: rgba(6,182,212,0.06); border-radius: 10px; font-size: 13px;">
+        <div style="margin-top: 14px; padding: 12px; background: rgba(2,132,199,0.06); border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 13px;">
           👥 <strong>ميزة استراتيجية:</strong> جمهور صفحة لينكدإن لشركة UMI يتكون بنسبة تفوق 70% من <strong>صناع قرار (Decision Makers)</strong> في مجالات إدارة العمليات، وتطوير الأعمال، والمشتريات في دبي وأبوظبي.
         </div>
       </div>
@@ -778,7 +830,7 @@
         </div>
         <div class="stat-row">
           <span class="stat-label">إجمالي مشاهدات الريلز (Facebook Views)</span>
-          <span class="stat-val" style="color: var(--primary-light); font-size: 18px;">1,940,000+ مشاهدة</span>
+          <span class="stat-val" style="color: var(--primary); font-size: 18px;">1,940,000+ مشاهدة</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">ذروة المشاهدات التاريخية (Peak Month)</span>
@@ -880,7 +932,7 @@
           <span class="stat-label">ظهور البروفايل في أغسطس (August Views)</span>
           <span class="stat-val">592 ظهور (280 بحث موبايل + 147 خرائط موبايل)</span>
         </div>
-        <div style="margin-top: 18px; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 10px; font-size: 13px; line-height: 1.6;">
+        <div style="margin-top: 18px; padding: 14px; background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 13px; line-height: 1.6;">
           📍 <strong>أهمية الخرائط:</strong> وجود مصنع ومقر الشركة في القوز بدبي يمنح UMI أفضلية كبرى في تحويل عملاء المعارض والشركات التي تبحث عن معاينة وتصنيع حقيقي وسريع.
         </div>
       </div>
@@ -890,6 +942,15 @@
 </div>
 
 <script>
+  // Theme Switching
+  let isDark = false;
+  function toggleTheme() {
+    isDark = !isDark;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    document.getElementById('theme-btn').innerText = isDark ? '☀️ الفاتح' : '🌙 الداكن';
+    updateChartsTheme();
+  }
+
   // Tab Switching
   function switchTab(tabId) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -919,13 +980,20 @@
     }
   }
 
-  // Common Chart Styling
-  Chart.defaults.color = '#9ca3af';
-  Chart.defaults.font.family = "'Tajawal', sans-serif";
+  // Common Chart Defaults for Light Theme
+  function getChartColors() {
+    return isDark ? '#9ca3af' : '#475569';
+  }
+  function getGridColors() {
+    return isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)';
+  }
+
+  Chart.defaults.color = '#475569';
+  Chart.defaults.font.family = "'Tajawal', 'Plus Jakarta Sans', sans-serif";
 
   // Chart 1: Overview MoM Multi-Channel
   const ctxOverview = document.getElementById('chartOverview').getContext('2d');
-  new Chart(ctxOverview, {
+  const chartOverview = new Chart(ctxOverview, {
     type: 'line',
     data: {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -934,35 +1002,42 @@
           label: 'مشاهدات فيسبوك (بالآلاف K)',
           data: [0.1, 15.6, 6.6, 272.8, 558.8, 485.9, 420.0, 139.3],
           borderColor: '#BE0463',
-          backgroundColor: 'rgba(190, 4, 99, 0.1)',
+          backgroundColor: 'rgba(190, 4, 99, 0.08)',
           fill: true,
-          tension: 0.3
+          tension: 0.3,
+          borderWidth: 2.5
         },
         {
           label: 'صرف الإعلانات ($)',
           data: [0, 11.75, 4.02, 184.17, 377.39, 300.01, 308.36, 584.86],
-          borderColor: '#D4AF37',
+          borderColor: '#b48a1a',
           borderDash: [5, 5],
-          tension: 0.3
+          tension: 0.3,
+          borderWidth: 2.5
         },
         {
           label: 'ظهور لينكدإن (بالآلاف K)',
           data: [13.2, 17.5, 13.6, 11.4, 11.5, 10.7, 5.0, 5.8],
-          borderColor: '#06b6d4',
-          tension: 0.3
+          borderColor: '#0284c7',
+          tension: 0.3,
+          borderWidth: 2.5
         }
       ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } }
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        x: { grid: { color: getGridColors() } },
+        y: { grid: { color: getGridColors() } }
+      }
     }
   });
 
   // Chart 2: GA4 Traffic Acquisition Channels
   const ctxChannels = document.getElementById('chartChannels').getContext('2d');
-  new Chart(ctxChannels, {
+  const chartChannels = new Chart(ctxChannels, {
     type: 'doughnut',
     data: {
       labels: ['Direct (مباشر)', 'Paid Social (إعلانات)', 'Organic Social (عضوي)', 'Organic Search (SEO)', 'Referral (إحالات)', 'AI Assistant (ChatGPT)', 'Other'],
@@ -970,14 +1045,15 @@
         data: [6017, 5029, 4253, 3190, 984, 114, 835],
         backgroundColor: [
           '#BE0463',
-          '#8b5cf6',
-          '#06b6d4',
-          '#10b981',
-          '#D4AF37',
-          '#f97316',
-          '#4b5563'
+          '#7c3aed',
+          '#0284c7',
+          '#059669',
+          '#b48a1a',
+          '#ea580c',
+          '#94a3b8'
         ],
-        borderWidth: 0
+        borderWidth: 2,
+        borderColor: '#ffffff'
       }]
     },
     options: {
@@ -989,7 +1065,7 @@
 
   // Chart 3: Meta Ads Spend vs Clicks
   const ctxAds = document.getElementById('chartMetaAds').getContext('2d');
-  new Chart(ctxAds, {
+  const chartAds = new Chart(ctxAds, {
     type: 'bar',
     data: {
       labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -997,63 +1073,88 @@
         {
           label: 'الصرف الإعلاني ($ USD)',
           data: [11.75, 4.02, 184.17, 377.39, 300.01, 308.36, 584.86],
-          backgroundColor: '#BE0463'
+          backgroundColor: '#BE0463',
+          borderRadius: 6
         },
         {
           label: 'النقرات الناتجة (Clicks / 10)',
           data: [17.9, 10.2, 819.8, 284.0, 173.7, 234.2, 637.0],
-          backgroundColor: '#D4AF37'
+          backgroundColor: '#b48a1a',
+          borderRadius: 6
         }
       ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } }
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        x: { grid: { color: getGridColors() } },
+        y: { grid: { color: getGridColors() } }
+      }
     }
   });
 
   // Chart 4: LinkedIn Monthly Impressions
   const ctxLI = document.getElementById('chartLinkedIn').getContext('2d');
-  new Chart(ctxLI, {
+  const chartLI = new Chart(ctxLI, {
     type: 'bar',
     data: {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
       datasets: [{
         label: 'مرات الظهور العضوي (Organic Impressions)',
         data: [13210, 17492, 13572, 11389, 11456, 10700, 4969, 5791],
-        backgroundColor: '#06b6d4',
+        backgroundColor: '#0284c7',
         borderRadius: 6
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } }
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        x: { grid: { color: getGridColors() } },
+        y: { grid: { color: getGridColors() } }
+      }
     }
   });
 
   // Chart 5: Instagram Monthly Engagement
   const ctxIG = document.getElementById('chartInstagram').getContext('2d');
-  new Chart(ctxIG, {
+  const chartIG = new Chart(ctxIG, {
     type: 'line',
     data: {
       labels: ['Sep 25', 'Oct', 'Nov', 'Dec', 'Jan 26', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug 26'],
       datasets: [{
         label: 'إجمالي التفاعل العضوي (Likes + Comments)',
         data: [83, 33, 83, 73, 79, 55, 24, 46, 17, 22, 39, 126],
-        borderColor: '#ec4899',
-        backgroundColor: 'rgba(236, 72, 153, 0.1)',
+        borderColor: '#BE0463',
+        backgroundColor: 'rgba(190, 4, 99, 0.08)',
         fill: true,
-        tension: 0.3
+        tension: 0.3,
+        borderWidth: 2.5
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } }
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        x: { grid: { color: getGridColors() } },
+        y: { grid: { color: getGridColors() } }
+      }
     }
   });
+
+  function updateChartsTheme() {
+    const col = getChartColors();
+    const grid = getGridColors();
+    [chartOverview, chartAds, chartLI, chartIG].forEach(c => {
+      c.options.scales.x.grid.color = grid;
+      c.options.scales.y.grid.color = grid;
+      c.update();
+    });
+  }
 </script>
 
 </body>
