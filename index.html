@@ -900,46 +900,175 @@
       <div class="card">
         <div class="card-title">
           <span>ملخص الأداء المالي للحملات (Financial & Delivery Audit)</span>
-          <span class="badge">act_271200960590638</span>
+          <span class="badge" id="meta-audit-badge">act_271200960590638</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">إجمالي الصرف الإعلاني (Total Spend)</span>
-          <span class="stat-val" style="color: var(--gold); font-size: 18px;">$1,770.56 (AED 6,502.40)</span>
+          <span class="stat-val" id="meta-audit-spend" style="color: var(--gold); font-size: 18px;">$1,770.56 (AED 6,502.40)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">إجمالي مرات الظهور (Total Impressions)</span>
-          <span class="stat-val">2,072,529 ظهور رسمي</span>
+          <span class="stat-val" id="meta-audit-impr">2,072,529 ظهور رسمي</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">الوصول للأشخاص الفريدين (Unique Reach)</span>
-          <span class="stat-val">1,053,892 شخص</span>
+          <span class="stat-val" id="meta-audit-reach">1,053,892 شخص فريد</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">إجمالي النقرات المحققة (Total Clicks)</span>
-          <span class="stat-val">21,768 نقرة</span>
+          <span class="stat-val" id="meta-audit-clicks">21,768 نقرة</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">متوسط تكلفة النقرة الإجمالية (Average CPC)</span>
-          <span class="stat-val" style="color: var(--green);">$0.081 (تكلفة منخفضة جداً)</span>
+          <span class="stat-val" id="meta-audit-cpc" style="color: var(--green);">$0.081 (تكلفة نقرة رائدة عالمياً)</span>
         </div>
         <div class="stat-row">
-          <span class="stat-label">الشهر الأكثر كفاءة في النقرات (Best CTR)</span>
-          <span class="stat-val">مارس (3.11%) وأبريل (3.09%)</span>
+          <span class="stat-label">الشهر / الحملة الأكثر كفاءة في النقرات (Best CTR)</span>
+          <span class="stat-val" id="meta-audit-best">مارس (CTR 3.11%) وأبريل (CTR 3.09%)</span>
         </div>
       </div>
     </div>
 
-    <!-- Campaigns Breakdown -->
+    <!-- NEW: Monthly Meta Ads Performance Table (Jan - Aug 2026) -->
     <div class="card">
       <div class="card-title">
-        <span>سجل أداء الحملات الـ 8 الرئيسية في الحساب الإعلاني</span>
-        <span class="badge">8 Active Campaigns</span>
+        <span>📊 جدول الأداء الإعلاني لحساب ميتا مقسماً شهراً بشهر (Monthly Performance Breakdown 2026)</span>
+        <span class="badge">Official Jan – Aug 2026 Data</span>
       </div>
       <div class="table-wrap">
-        <table>
+        <table id="table-meta-monthly">
           <thead>
             <tr>
-              <th>اسم الحملة (Campaign)</th>
+              <th>الشهر (2026)</th>
+              <th>الصرف ($ USD)</th>
+              <th>الصرف (AED)</th>
+              <th>الظهور (Impressions)</th>
+              <th>الوصول (Reach)</th>
+              <th>النقرات (Clicks)</th>
+              <th>نسبة النقر (CTR)</th>
+              <th>متوسط CPC</th>
+              <th>الحملات وأهم النشاط الإعلاني في هذا الشهر</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-month="2026-01">
+              <td class="hl-col">يناير 2026</td>
+              <td>$0.00</td>
+              <td>AED 0.00</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0.00%</td>
+              <td>$0.00</td>
+              <td><span style="color: var(--text-muted);">لا توجد إعلانات ممولة (تأسيس عضوي 100% وتحسين SEO)</span></td>
+            </tr>
+            <tr data-month="2026-02">
+              <td class="hl-col">فبراير 2026</td>
+              <td>$11.75</td>
+              <td>AED 43.15</td>
+              <td>7,802</td>
+              <td>6,314</td>
+              <td>179</td>
+              <td>2.29%</td>
+              <td>$0.065</td>
+              <td>أول حملة إعلانية تجريبية (First Campaign Feb) لاختبار كفاءة الجمهور</td>
+            </tr>
+            <tr data-month="2026-03">
+              <td class="hl-col">مارس 2026</td>
+              <td>$4.02</td>
+              <td>AED 14.76</td>
+              <td>3,278</td>
+              <td>3,035</td>
+              <td>102</td>
+              <td><strong style="color: var(--green);">3.11%</strong></td>
+              <td>$0.039</td>
+              <td>حملة يوم المرأة العالمي التجريبية (كفاءة نقر قياسية CTR 3.11%)</td>
+            </tr>
+            <tr data-month="2026-04">
+              <td class="hl-col">أبريل 2026</td>
+              <td>$184.17</td>
+              <td>AED 676.36</td>
+              <td>265,059</td>
+              <td>175,307</td>
+              <td><strong style="color: var(--primary);">8,198</strong></td>
+              <td>3.09%</td>
+              <td><strong style="color: var(--green);">$0.022</strong></td>
+              <td>حملة التصميم الداخلي وبدء ريلز (بيك النقرات السنوي وأرخص CPC في الحساب)</td>
+            </tr>
+            <tr data-month="2026-05">
+              <td class="hl-col">مايو 2026</td>
+              <td>$377.39</td>
+              <td>AED 1,385.98</td>
+              <td>580,224</td>
+              <td>288,687</td>
+              <td>2,840</td>
+              <td>0.49%</td>
+              <td>$0.133</td>
+              <td>حملة زيادة المتابعين (UMI Followers) + ترويج بوست Exceptional Design</td>
+            </tr>
+            <tr data-month="2026-06">
+              <td class="hl-col">يونيو 2026</td>
+              <td>$300.01</td>
+              <td>AED 1,101.79</td>
+              <td>507,931</td>
+              <td>244,872</td>
+              <td>1,737</td>
+              <td>0.34%</td>
+              <td>$0.173</td>
+              <td>حملة زيادة المتابعين (UMI Followers) + ترويج بوست تجربة الضيافة والمطاعم</td>
+            </tr>
+            <tr data-month="2026-07">
+              <td class="hl-col">يوليو 2026</td>
+              <td>$308.36</td>
+              <td>AED 1,132.45</td>
+              <td>421,724</td>
+              <td>206,181</td>
+              <td>2,342</td>
+              <td>0.56%</td>
+              <td>$0.132</td>
+              <td>استمرار حملة المتابعين والتحضير لحملات معارض الربع الرابع وجيتكس</td>
+            </tr>
+            <tr data-month="2026-08">
+              <td class="hl-col">أغسطس 2026</td>
+              <td><strong style="color: var(--gold);">$584.86</strong></td>
+              <td><strong style="color: var(--gold);">AED 2,147.90</strong></td>
+              <td>286,511</td>
+              <td>129,776</td>
+              <td>6,370</td>
+              <td>2.22%</td>
+              <td>$0.092</td>
+              <td><strong>بيك الصيف:</strong> 3 حملات ريلز كبرى ("نصمم بإبداع" + "Every space" + "Dining") + المتابعين</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="font-weight: 800; background: rgba(190,4,99,0.06);">
+              <td>الإجمالي (8 شهور)</td>
+              <td>$1,770.56</td>
+              <td>AED 6,502.40</td>
+              <td>2,072,529</td>
+              <td>1,053,892</td>
+              <td>21,768</td>
+              <td>1.05%</td>
+              <td>$0.081</td>
+              <td>8 حملات إعلانية رسمية في حساب ميتا</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Campaigns Breakdown with Month Column -->
+    <div class="card">
+      <div class="card-title">
+        <span>سجل الحملات الإعلانية الـ 8 وتاريخ / فترة نشاط كل حملة (Meta Campaigns by Active Period)</span>
+        <span class="badge" id="meta-campaigns-badge">8 Active Campaigns</span>
+      </div>
+      <div class="table-wrap">
+        <table id="table-meta-campaigns">
+          <thead>
+            <tr>
+              <th>اسم الحملة (Campaign Name)</th>
+              <th>الشهر / فترة النشاط (Active Period)</th>
               <th>الصرف ($)</th>
               <th>الظهور (Impressions)</th>
               <th>الوصول (Reach)</th>
@@ -948,77 +1077,89 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="hl-col">حملة المتابعين (UMI Followers)</td>
-              <td>$610.00</td>
-              <td>208,255</td>
-              <td>39,676</td>
-              <td>5,535</td>
-              <td>2.66%</td>
+            <tr class="no-ads-jan" style="display: none;">
+              <td colspan="7" style="text-align: center; padding: 24px; color: var(--text-muted); font-size: 14px; background: rgba(0,0,0,0.02);">
+                ℹ️ <strong>شهر يناير 2026:</strong> لا توجد أي حملات إعلانية ممولة خلال هذا الشهر (0.00$ صرف و 0 نقرات مدفوعة). اعتمدت الشركة على التأسيس العضوي لموقعها ومحركات البحث SEO وجدولة المحتوى. بدأت الإعلانات الممولة رسمياً في فبراير 2026.
+              </td>
             </tr>
-            <tr>
+            <tr data-campaign-months="2026-02,2026-03,2026-04">
+              <td class="hl-col">حملة الانطلاق الأولى (First Campaign Feb)</td>
+              <td><span class="badge" style="background: rgba(2,132,199,0.1); color: var(--cyan);">فبراير – أبريل 2026</span></td>
+              <td>$98.98</td>
+              <td>124,103</td>
+              <td>80,987</td>
+              <td><strong>8,118</strong></td>
+              <td><strong style="color: var(--green);">6.54%</strong></td>
+            </tr>
+            <tr data-campaign-months="2026-04,2026-05,2026-06">
               <td class="hl-col">حملة التصميم الداخلي (Interior Campaign)</td>
+              <td><span class="badge" style="background: rgba(180,138,26,0.1); color: var(--gold);">أبريل – يونيو 2026</span></td>
               <td>$463.39</td>
               <td><strong>1,467,562</strong></td>
               <td><strong>528,040</strong></td>
               <td>1,998</td>
               <td>0.14%</td>
             </tr>
-            <tr>
-              <td class="hl-col">ريلز: "نصمم بإبداع، نُنفذ بدقة، ونسلّمك..."</td>
-              <td>$166.31</td>
-              <td>96,658</td>
-              <td>53,227</td>
-              <td>1,347</td>
-              <td>1.39%</td>
+            <tr data-campaign-months="2026-05,2026-06,2026-07,2026-08">
+              <td class="hl-col">حملة المتابعين (UMI Followers)</td>
+              <td><span class="badge" style="background: rgba(190,4,99,0.1); color: var(--primary);">مايو – أغسطس 2026</span></td>
+              <td>$610.00</td>
+              <td>208,255</td>
+              <td>39,676</td>
+              <td>5,535</td>
+              <td>2.66%</td>
             </tr>
-            <tr>
-              <td class="hl-col">ريلز: "Every space tells a story..."</td>
-              <td>$166.00</td>
-              <td>55,925</td>
-              <td>22,952</td>
-              <td><strong>3,202</strong></td>
-              <td><strong>5.73%</strong></td>
-            </tr>
-            <tr>
-              <td class="hl-col">ريلز: "A great dining experience starts..."</td>
-              <td>$166.00</td>
-              <td>100,547</td>
-              <td>43,575</td>
-              <td>1,286</td>
-              <td>1.28%</td>
-            </tr>
-            <tr>
-              <td class="hl-col">حملة الانطلاق الأولى (First Campaign Feb)</td>
-              <td>$98.98</td>
-              <td>124,103</td>
-              <td>80,987</td>
-              <td><strong>8,118</strong></td>
-              <td><strong>6.54%</strong></td>
-            </tr>
-            <tr>
+            <tr data-campaign-months="2026-05">
               <td class="hl-col">بوست: "Exceptional design isn’t just..."</td>
+              <td><span class="badge">مايو 2026</span></td>
               <td>$49.92</td>
               <td>5,818</td>
               <td>2,685</td>
               <td>130</td>
               <td>2.23%</td>
             </tr>
-            <tr>
-              <td class="hl-col">بوست: "A great dining experience..."</td>
+            <tr data-campaign-months="2026-06">
+              <td class="hl-col">بوست: "A great dining experience..." (Run 1)</td>
+              <td><span class="badge">يونيو 2026</span></td>
               <td>$49.96</td>
               <td>13,661</td>
               <td>10,153</td>
               <td>152</td>
               <td>1.11%</td>
             </tr>
+            <tr data-campaign-months="2026-08">
+              <td class="hl-col">ريلز: "نصمم بإبداع، نُنفذ بدقة، ونسلّمك..."</td>
+              <td><span class="badge" style="background: rgba(190,4,99,0.1); color: var(--primary);">أغسطس 2026 (بيك الصيف)</span></td>
+              <td>$166.31</td>
+              <td>96,658</td>
+              <td>53,227</td>
+              <td>1,347</td>
+              <td>1.39%</td>
+            </tr>
+            <tr data-campaign-months="2026-08">
+              <td class="hl-col">ريلز: "Every space tells a story..."</td>
+              <td><span class="badge" style="background: rgba(190,4,99,0.1); color: var(--primary);">أغسطس 2026 (بيك الصيف)</span></td>
+              <td>$166.00</td>
+              <td>55,925</td>
+              <td>22,952</td>
+              <td><strong>3,202</strong></td>
+              <td><strong style="color: var(--green);">5.73%</strong></td>
+            </tr>
+            <tr data-campaign-months="2026-08">
+              <td class="hl-col">ريلز: "A great dining experience starts..."</td>
+              <td><span class="badge" style="background: rgba(190,4,99,0.1); color: var(--primary);">أغسطس 2026 (بيك الصيف)</span></td>
+              <td>$166.00</td>
+              <td>100,547</td>
+              <td>43,575</td>
+              <td>1,286</td>
+              <td>1.28%</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
-  <!-- TAB 5: LINKEDIN -->
+<!-- TAB 5: LINKEDIN -->
   <div id="tab-linkedin" class="tab-pane">
     <div class="two-col">
       <div class="card">
@@ -1194,7 +1335,7 @@
 
 <script>
   // Complete Data Source for Dynamic Filtering
-  const monthsData = {"all": {"title_ar": "جميع الشهور (يناير – أغسطس 2026)", "title_en": "All Months (Jan – Aug 2026)", "meta_spend": "$1,770", "meta_spend_sub": "AED 6,502 | 8 حملات", "paid_impr": "2.95M", "paid_impr_sub": "2.07M Meta + 880K LinkedIn", "paid_clicks": "36,838", "paid_clicks_sub": "21.7K Meta + 15K LinkedIn", "ga4_sessions": "20,422", "ga4_sub": "5,122 متفاعلة (25.1%)", "ig_reach": "115.1K", "ig_sub": "134 منشور | 5.7K زيارة بروفايل", "fb_views": "1.94M", "fb_sub": "بيك مايو: 558K مشاهدة", "li_followers": "18,164", "li_sub": "88.5K ظهور عضوي | 3.4K مقال", "maps_clicks": "580+", "maps_sub": "+73.3% نمو سنوي بالنقرات", "seo_impr": "11,214", "seo_sub": "34 نقرة عضوية | متوسط مركز 30", "leads": "21 ليد مباشر", "highlight_ar": "نظرة شاملة لكامل الـ 8 شهور الأولى: حققت الشركة نمواً تراكمياً ضخماً بوصول مدفوع قرابة 3 مليون ظهور و 36.8 ألف نقرة مباشرة، مع قفزات تاريخية في ريلز فيسبوك في مايو ونقرات الخرائط في أبريل، وصولاً للبيك القياسي لزوار الموقع في أغسطس.", "highlight_en": "Full 8-Month Comprehensive Audit: Achieved massive growth with nearly 3 Million paid impressions, 36.8K direct clicks, historic Facebook Reels virality in May, Google Maps peak in April, and record website traffic in August.", "ga4_channels": [6017, 5029, 4253, 3190, 984, 114, 835], "ga4_badge": "20,422 Sessions (إجمالي 8 شهور)", "ga4_badge_en": "20,422 Sessions (8-Month Total)"}, "2026-08": {"title_ar": "شهر أغسطس 2026 (البيك القياسي)", "title_en": "August 2026 (Record Peak Month)", "meta_spend": "$584.86", "meta_spend_sub": "AED 2,147.90 | بيك الصرف", "paid_impr": "479.9K", "paid_impr_sub": "286.5K Meta + 193.4K LinkedIn", "paid_clicks": "10,047", "paid_clicks_sub": "6,370 Meta + 3,677 LinkedIn", "ga4_sessions": "3,925", "ga4_sub": "3,120 مستخدم (+68.6% MoM)", "ig_reach": "115.1K", "ig_sub": "15 منشور (126 تفاعل - الأعلى)", "fb_views": "139,339", "fb_sub": "1,136 تفاعل (+11.2% MoM)", "li_followers": "18,164", "li_sub": "5,791 ظهور عضوي (2.09% Eng)", "maps_clicks": "79", "maps_sub": "+19.7% نمو سنوي | 592 ظهور", "seo_impr": "1,864", "seo_sub": "6 نقرات | متوسط مركز 30.0", "leads": "8 ليدز مؤكدة", "highlight_ar": "أغسطس هو شهر البيك الأقوى طوال العام: كسر الموقع حاجز 3,120 مستخدم فريد (+68.6%)، وتصدرت منشورات إنستجرام أعلى معدل تفاعل سنوي (126 تفاعل)، مع ظهور ترافيك الذكاء الاصطناعي من ChatGPT كقناة إحالة جديدة لأول مرة.", "highlight_en": "August is the strongest peak month: Website broke record with 3,120 unique users (+68.6%), Instagram achieved highest yearly engagement (126), and ChatGPT AI assistant emerged as a high-converting referral channel.", "ga4_channels": [857, 1849, 293, 630, 144, 114, 38], "ga4_badge": "3,925 Sessions (أغسطس 2026 - بيك الزيارات)", "ga4_badge_en": "3,925 Sessions (August 2026 Peak)"}, "2026-07": {"title_ar": "شهر يوليو 2026", "title_en": "July 2026", "meta_spend": "$308.36", "meta_spend_sub": "AED 1,132.45", "paid_impr": "636.2K", "paid_impr_sub": "421.7K Meta + 214.5K LinkedIn", "paid_clicks": "6,631", "paid_clicks_sub": "2,342 Meta + 4,289 LinkedIn", "ga4_sessions": "2,420", "ga4_sub": "1,850 مستخدم نشط", "ig_reach": "35.0K", "ig_sub": "8 منشورات (39 تفاعل)", "fb_views": "420,000", "fb_sub": "1,022 تفاعل", "li_followers": "17,820", "li_sub": "4,969 ظهور عضوي", "maps_clicks": "66", "maps_sub": "510 ظهور على الخرائط", "seo_impr": "1,420", "seo_sub": "4 نقرات عضوية", "leads": "2 ليدز", "highlight_ar": "يوليو كان شهر استقرار وتجهيز لحملات معارض الربع الأخير وجيتكس، مع أداء قوي في نقرات لينكدإن الممولة (4,289 نقرة) ومشاهدات ريلز فيسبوك (+420 ألف مشاهدة).", "highlight_en": "July focused on campaign optimization for Q4 and GITEX exhibitions, delivering strong sponsored LinkedIn clicks (4,289) and over 420K Facebook Reels views.", "ga4_channels": [720, 940, 340, 320, 80, 0, 20], "ga4_badge": "2,420 Sessions (يوليو 2026)", "ga4_badge_en": "2,420 Sessions (July 2026)"}, "2026-06": {"title_ar": "شهر يونيو 2026", "title_en": "June 2026", "meta_spend": "$300.01", "meta_spend_sub": "AED 1,101.79", "paid_impr": "743.2K", "paid_impr_sub": "507.9K Meta + 235.3K LinkedIn", "paid_clicks": "5,659", "paid_clicks_sub": "1,737 Meta + 3,922 LinkedIn", "ga4_sessions": "3,120", "ga4_sub": "790 جلسة متفاعلة", "ig_reach": "38.5K", "ig_sub": "9 منشورات (22 تفاعل)", "fb_views": "485,956", "fb_sub": "1,143 تفاعل", "li_followers": "17,450", "li_sub": "10,700 ظهور عضوي", "maps_clicks": "76", "maps_sub": "170 طلب اتجاهات للمصنع", "seo_impr": "1,510", "seo_sub": "5 نقرات", "leads": "3 ليدز", "highlight_ar": "يونيو تميز بقوة حملات لينكدإن وميتا المشتركة مع نمو كبير في طلبات الاتجاهات لمصنع الشركة بالقوز على خرائط جوجل (170 طلب اتجاهات).", "highlight_en": "June delivered balanced growth across Meta and LinkedIn sponsored campaigns, alongside 170 direction requests to the Al Quoz facility on Google Maps.", "ga4_channels": [820, 1150, 510, 480, 120, 0, 40], "ga4_badge": "3,120 Sessions (يونيو 2026)", "ga4_badge_en": "3,120 Sessions (June 2026)"}, "2026-05": {"title_ar": "شهر مايو 2026 (البيك التاريخي للريلز)", "title_en": "May 2026 (Facebook Reels Virality Peak)", "meta_spend": "$377.39", "meta_spend_sub": "AED 1,385.98", "paid_impr": "812.5K", "paid_impr_sub": "618.5K Meta + 194K LinkedIn", "paid_clicks": "5,623", "paid_clicks_sub": "2,840 Meta + 2,783 LinkedIn", "ga4_sessions": "3,580", "ga4_sub": "890 جلسة متفاعلة", "ig_reach": "42.0K", "ig_sub": "14 منشور (46 تفاعل)", "fb_views": "558,851", "fb_sub": "أعلى رقم ريلز بالعام (+558K)", "li_followers": "17,000", "li_sub": "11,456 ظهور عضوي", "maps_clicks": "81", "maps_sub": "185 بحث و 89 مسار", "seo_impr": "1,620", "seo_sub": "6 نقرات", "leads": "4 ليدز", "highlight_ar": "مايو كان شهر الانفجار العضوي لريلز فيسبوك: كسر حاجز نصف مليون مشاهدة (558,851 مشاهدة) بنسبة 96.9% لغير المتابعين، مؤكداً قوة انتشار مقاطع الفيديو القصيرة.", "highlight_en": "May achieved viral Facebook Reels dominance, crossing over half a million views (558,851) with 96.9% non-follower reach.", "ga4_channels": [960, 680, 1180, 560, 160, 0, 40], "ga4_badge": "3,580 Sessions (مايو 2026 - بيك السوشيال العضوي)", "ga4_badge_en": "3,580 Sessions (May 2026 - Organic Peak)"}, "2026-04": {"title_ar": "شهر أبريل 2026 (بيك خرائط جوجل)", "title_en": "April 2026 (Google Maps Record Peak)", "meta_spend": "$184.17", "meta_spend_sub": "AED 676.36 | CPC قياسي $0.022", "paid_impr": "273.5K", "paid_impr_sub": "Meta High-Efficiency Ad", "paid_clicks": "8,198", "paid_clicks_sub": "أعلى نقرات ميتا بالعام", "ga4_sessions": "2,340", "ga4_sub": "580 جلسة متفاعلة", "ig_reach": "28.0K", "ig_sub": "12 منشور (55 تفاعل)", "fb_views": "272,328", "fb_sub": "680 تفاعل", "li_followers": "16,550", "li_sub": "11,389 ظهور عضوي", "maps_clicks": "104", "maps_sub": "+73.3% نمو سنوي | 203 اتجاه للمصنع", "seo_impr": "1,480", "seo_sub": "4 نقرات", "leads": "4 ليدز", "highlight_ar": "أبريل حقق الرقم القياسي السنوي على Google Maps بـ 104 نقرة للموقع و 203 طلب مسار لمصنع القوز (+73.3% نمو سنوي)، بجانب تحقيق أرخص تكلفة نقرة إعلانية في تاريخ الحملات ($0.022).", "highlight_en": "April delivered all-time record on Google Business Profile with 104 website clicks and 203 factory directions (+73.3% YoY), alongside record lowest CPC of $0.022 on Meta.", "ga4_channels": [780, 290, 640, 460, 140, 0, 30], "ga4_badge": "2,340 Sessions (أبريل 2026)", "ga4_badge_en": "2,340 Sessions (April 2026)"}, "2026-03": {"title_ar": "شهر مارس 2026 (يوم المرأة العالمي)", "title_en": "March 2026 (Women Day Campaign)", "meta_spend": "$4.02", "meta_spend_sub": "AED 14.76 | تجربة مصغرة", "paid_impr": "3,277", "paid_impr_sub": "CTR استثنائي 3.11%", "paid_clicks": "102", "paid_clicks_sub": "كفاءة نقر عالية", "ga4_sessions": "1,637", "ga4_sub": "420 جلسة متفاعلة", "ig_reach": "8.5K", "ig_sub": "16 منشور (73 تفاعل)", "fb_views": "12,500", "fb_sub": "515 تفاعل", "li_followers": "16,100", "li_sub": "13,572 ظهور عضوي", "maps_clicks": "72", "maps_sub": "160 بحث و 78 مسار", "seo_impr": "1,350", "seo_sub": "4 نقرات", "leads": "0", "highlight_ar": "مارس شهد انطلاق أولى حملات المحتوى الإنساني (يوم المرأة) مع كفاءة نقر عالية جداً في الإعلانات (CTR 3.11%) وتجهيز البنية التحتية لحملات الربع الثاني.", "highlight_en": "March marked the launch of human-centric campaigns (Women Day) with exceptional ad click efficiency (CTR 3.11%) laying groundwork for Q2 growth.", "ga4_channels": [580, 75, 460, 390, 110, 0, 22], "ga4_badge": "1,637 Sessions (مارس 2026)", "ga4_badge_en": "1,637 Sessions (March 2026)"}, "2026-02": {"title_ar": "شهر فبراير 2026 (بدء الإعلانات)", "title_en": "February 2026 (Ad Campaigns Launch)", "meta_spend": "$11.75", "meta_spend_sub": "AED 43.15 | أول حملة ممولة", "paid_impr": "7,802", "paid_impr_sub": "Meta First Campaign", "paid_clicks": "179", "paid_clicks_sub": "CPC $0.065", "ga4_sessions": "1,820", "ga4_sub": "440 جلسة متفاعلة", "ig_reach": "3.2K", "ig_sub": "11 منشور (55 تفاعل)", "fb_views": "15,696", "fb_sub": "أول قفزة ريلز فيسبوك", "li_followers": "15,600", "li_sub": "17,492 ظهور (3.15% Eng)", "maps_clicks": "68", "maps_sub": "145 بحث و 62 مسار", "seo_impr": "1,120", "seo_sub": "3 نقرات", "leads": "0", "highlight_ar": "فبراير شهد إطلاق أول حملة إعلانية تجريبية لشركة UMI على ميتا، مع بداية تجربة ريلز فيسبوك التي حققت فوراً أكثر من 15 ألف مشاهدة أولية.", "highlight_en": "February launched the very first Meta ad test campaigns, while Facebook Reels delivered an immediate proof of concept with over 15,000 views.", "ga4_channels": [680, 45, 470, 480, 120, 0, 25], "ga4_badge": "1,820 Sessions (فبراير 2026 - بداية الإعلانات)", "ga4_badge_en": "1,820 Sessions (February 2026)"}, "2026-01": {"title_ar": "شهر يناير 2026 (بداية الخطة السنوية)", "title_en": "January 2026 (Strategy Kickoff)", "meta_spend": "$0.00", "meta_spend_sub": "AED 0.00 | لا إعلانات ممولة", "paid_impr": "0", "paid_impr_sub": "ترافيك عضوي 100%", "paid_clicks": "0", "paid_clicks_sub": "0 نقرة مدفوعة", "ga4_sessions": "1,580", "ga4_sub": "390 جلسة متفاعلة", "ig_reach": "1.8K", "ig_sub": "13 منشور (79 تفاعل)", "fb_views": "138", "fb_sub": "410 تفاعلات", "li_followers": "15,200", "li_sub": "13,210 ظهور (4.03% Eng)", "maps_clicks": "54", "maps_sub": "112 بحث و 48 مسار", "seo_impr": "850", "seo_sub": "2 نقرات", "leads": "0", "highlight_ar": "يناير كان شهر التأسيس الأولي: تحسين محركات البحث لموقع الشركة (SEO)، جدولة خطة المحتوى العضوي، وبناء المتابعين على لينكدإن وإنستجرام بدون أي صرف إعلاني.", "highlight_en": "January established the digital foundation: SEO optimization, organic content scheduling, and LinkedIn audience building without paid ad spend.", "ga4_channels": [620, 0, 360, 470, 110, 0, 20], "ga4_badge": "1,580 Sessions (يناير 2026 - بدون إعلانات ممولة 100% عضوي)", "ga4_badge_en": "1,580 Sessions (January 2026 - 100% Organic, $0 Paid)"}};
+  const monthsData = {"all": {"title_ar": "جميع الشهور (يناير – أغسطس 2026)", "title_en": "All Months (Jan – Aug 2026)", "meta_spend": "$1,770", "meta_spend_sub": "AED 6,502 | 8 حملات", "paid_impr": "2.95M", "paid_impr_sub": "2.07M Meta + 880K LinkedIn", "paid_clicks": "36,838", "paid_clicks_sub": "21.7K Meta + 15K LinkedIn", "ga4_sessions": "20,422", "ga4_sub": "5,122 متفاعلة (25.1%)", "ig_reach": "115.1K", "ig_sub": "134 منشور | 5.7K زيارة بروفايل", "fb_views": "1.94M", "fb_sub": "بيك مايو: 558K مشاهدة", "li_followers": "18,164", "li_sub": "88.5K ظهور عضوي | 3.4K مقال", "maps_clicks": "580+", "maps_sub": "+73.3% نمو سنوي بالنقرات", "seo_impr": "11,214", "seo_sub": "34 نقرة عضوية | متوسط مركز 30", "leads": "21 ليد مباشر", "highlight_ar": "نظرة شاملة لكامل الـ 8 شهور الأولى: حققت الشركة نمواً تراكمياً ضخماً بوصول مدفوع قرابة 3 مليون ظهور و 36.8 ألف نقرة مباشرة، مع قفزات تاريخية في ريلز فيسبوك في مايو ونقرات الخرائط في أبريل، وصولاً للبيك القياسي لزوار الموقع في أغسطس.", "highlight_en": "Full 8-Month Comprehensive Audit: Achieved massive growth with nearly 3 Million paid impressions, 36.8K direct clicks, historic Facebook Reels virality in May, Google Maps peak in April, and record website traffic in August.", "ga4_channels": [6017, 5029, 4253, 3190, 984, 114, 835], "ga4_badge": "20,422 Sessions (إجمالي 8 شهور)", "ga4_badge_en": "20,422 Sessions (8-Month Total)", "meta_audit_spend": "$1,770.56 (AED 6,502.40)", "meta_audit_impr": "2,072,529 ظهور رسمي", "meta_audit_reach": "1,053,892 شخص فريد", "meta_audit_clicks": "21,768 نقرة", "meta_audit_cpc": "$0.081 (تكلفة نقرة رائدة)", "meta_audit_best": "مارس (CTR 3.11%) وأبريل (CTR 3.09%)", "meta_audit_badge": "act_271200960590638 (إجمالي 8 شهور)", "meta_audit_badge_en": "act_271200960590638 (8-Month Total)"}, "2026-08": {"title_ar": "شهر أغسطس 2026 (البيك القياسي)", "title_en": "August 2026 (Record Peak Month)", "meta_spend": "$584.86", "meta_spend_sub": "AED 2,147.90 | بيك الصرف", "paid_impr": "479.9K", "paid_impr_sub": "286.5K Meta + 193.4K LinkedIn", "paid_clicks": "10,047", "paid_clicks_sub": "6,370 Meta + 3,677 LinkedIn", "ga4_sessions": "3,925", "ga4_sub": "3,120 مستخدم (+68.6% MoM)", "ig_reach": "115.1K", "ig_sub": "15 منشور (126 تفاعل - الأعلى)", "fb_views": "139,339", "fb_sub": "1,136 تفاعل (+11.2% MoM)", "li_followers": "18,164", "li_sub": "5,791 ظهور عضوي (2.09% Eng)", "maps_clicks": "79", "maps_sub": "+19.7% نمو سنوي | 592 ظهور", "seo_impr": "1,864", "seo_sub": "6 نقرات | متوسط مركز 30.0", "leads": "8 ليدز مؤكدة", "highlight_ar": "أغسطس هو شهر البيك الأقوى طوال العام: كسر الموقع حاجز 3,120 مستخدم فريد (+68.6%)، وتصدرت منشورات إنستجرام أعلى معدل تفاعل سنوي (126 تفاعل)، مع ظهور ترافيك الذكاء الاصطناعي من ChatGPT كقناة إحالة جديدة لأول مرة.", "highlight_en": "August is the strongest peak month: Website broke record with 3,120 unique users (+68.6%), Instagram achieved highest yearly engagement (126), and ChatGPT AI assistant emerged as a high-converting referral channel.", "ga4_channels": [857, 1849, 293, 630, 144, 114, 38], "ga4_badge": "3,925 Sessions (أغسطس 2026 - بيك الزيارات)", "ga4_badge_en": "3,925 Sessions (August 2026 Peak)", "meta_audit_spend": "$584.86 (AED 2,147.90)", "meta_audit_impr": "286,511 ظهور", "meta_audit_reach": "129,776 شخص فريد", "meta_audit_clicks": "6,370 نقرة", "meta_audit_cpc": "$0.092", "meta_audit_best": "ريلز 'Every space' (CTR قياسي 5.73%)", "meta_audit_badge": "أغسطس 2026 (بيك الصرف والحملات)", "meta_audit_badge_en": "August 2026 (Peak Spend & Campaigns)"}, "2026-07": {"title_ar": "شهر يوليو 2026", "title_en": "July 2026", "meta_spend": "$308.36", "meta_spend_sub": "AED 1,132.45", "paid_impr": "636.2K", "paid_impr_sub": "421.7K Meta + 214.5K LinkedIn", "paid_clicks": "6,631", "paid_clicks_sub": "2,342 Meta + 4,289 LinkedIn", "ga4_sessions": "2,420", "ga4_sub": "1,850 مستخدم نشط", "ig_reach": "35.0K", "ig_sub": "8 منشورات (39 تفاعل)", "fb_views": "420,000", "fb_sub": "1,022 تفاعل", "li_followers": "17,820", "li_sub": "4,969 ظهور عضوي", "maps_clicks": "66", "maps_sub": "510 ظهور على الخرائط", "seo_impr": "1,420", "seo_sub": "4 نقرات عضوية", "leads": "2 ليدز", "highlight_ar": "يوليو كان شهر استقرار وتجهيز لحملات معارض الربع الأخير وجيتكس، مع أداء قوي في نقرات لينكدإن الممولة (4,289 نقرة) ومشاهدات ريلز فيسبوك (+420 ألف مشاهدة).", "highlight_en": "July focused on campaign optimization for Q4 and GITEX exhibitions, delivering strong sponsored LinkedIn clicks (4,289) and over 420K Facebook Reels views.", "ga4_channels": [720, 940, 340, 320, 80, 0, 20], "ga4_badge": "2,420 Sessions (يوليو 2026)", "ga4_badge_en": "2,420 Sessions (July 2026)", "meta_audit_spend": "$308.36 (AED 1,132.45)", "meta_audit_impr": "421,724 ظهور", "meta_audit_reach": "206,181 شخص فريد", "meta_audit_clicks": "2,342 نقرة", "meta_audit_cpc": "$0.132", "meta_audit_best": "حملة المتابعين UMI Followers", "meta_audit_badge": "يوليو 2026", "meta_audit_badge_en": "July 2026"}, "2026-06": {"title_ar": "شهر يونيو 2026", "title_en": "June 2026", "meta_spend": "$300.01", "meta_spend_sub": "AED 1,101.79", "paid_impr": "743.2K", "paid_impr_sub": "507.9K Meta + 235.3K LinkedIn", "paid_clicks": "5,659", "paid_clicks_sub": "1,737 Meta + 3,922 LinkedIn", "ga4_sessions": "3,120", "ga4_sub": "790 جلسة متفاعلة", "ig_reach": "38.5K", "ig_sub": "9 منشورات (22 تفاعل)", "fb_views": "485,956", "fb_sub": "1,143 تفاعل", "li_followers": "17,450", "li_sub": "10,700 ظهور عضوي", "maps_clicks": "76", "maps_sub": "170 طلب اتجاهات للمصنع", "seo_impr": "1,510", "seo_sub": "5 نقرات", "leads": "3 ليدز", "highlight_ar": "يونيو تميز بقوة حملات لينكدإن وميتا المشتركة مع نمو كبير في طلبات الاتجاهات لمصنع الشركة بالقوز على خرائط جوجل (170 طلب اتجاهات).", "highlight_en": "June delivered balanced growth across Meta and LinkedIn sponsored campaigns, alongside 170 direction requests to the Al Quoz facility on Google Maps.", "ga4_channels": [820, 1150, 510, 480, 120, 0, 40], "ga4_badge": "3,120 Sessions (يونيو 2026)", "ga4_badge_en": "3,120 Sessions (June 2026)", "meta_audit_spend": "$300.01 (AED 1,101.79)", "meta_audit_impr": "507,931 ظهور", "meta_audit_reach": "244,872 شخص فريد", "meta_audit_clicks": "1,737 نقرة", "meta_audit_cpc": "$0.173", "meta_audit_best": "حملة المتابعين وبوست الضيافة الأول", "meta_audit_badge": "يونيو 2026", "meta_audit_badge_en": "June 2026"}, "2026-05": {"title_ar": "شهر مايو 2026 (البيك التاريخي للريلز)", "title_en": "May 2026 (Facebook Reels Virality Peak)", "meta_spend": "$377.39", "meta_spend_sub": "AED 1,385.98", "paid_impr": "812.5K", "paid_impr_sub": "618.5K Meta + 194K LinkedIn", "paid_clicks": "5,623", "paid_clicks_sub": "2,840 Meta + 2,783 LinkedIn", "ga4_sessions": "3,580", "ga4_sub": "890 جلسة متفاعلة", "ig_reach": "42.0K", "ig_sub": "14 منشور (46 تفاعل)", "fb_views": "558,851", "fb_sub": "أعلى رقم ريلز بالعام (+558K)", "li_followers": "17,000", "li_sub": "11,456 ظهور عضوي", "maps_clicks": "81", "maps_sub": "185 بحث و 89 مسار", "seo_impr": "1,620", "seo_sub": "6 نقرات", "leads": "4 ليدز", "highlight_ar": "مايو كان شهر الانفجار العضوي لريلز فيسبوك: كسر حاجز نصف مليون مشاهدة (558,851 مشاهدة) بنسبة 96.9% لغير المتابعين، مؤكداً قوة انتشار مقاطع الفيديو القصيرة.", "highlight_en": "May achieved viral Facebook Reels dominance, crossing over half a million views (558,851) with 96.9% non-follower reach.", "ga4_channels": [960, 680, 1180, 560, 160, 0, 40], "ga4_badge": "3,580 Sessions (مايو 2026 - بيك السوشيال العضوي)", "ga4_badge_en": "3,580 Sessions (May 2026 - Organic Peak)", "meta_audit_spend": "$377.39 (AED 1,385.98)", "meta_audit_impr": "580,224 ظهور", "meta_audit_reach": "288,687 شخص فريد", "meta_audit_clicks": "2,840 نقرة", "meta_audit_cpc": "$0.133", "meta_audit_best": "حملة المتابعين وبوست Exceptional Design", "meta_audit_badge": "مايو 2026", "meta_audit_badge_en": "May 2026"}, "2026-04": {"title_ar": "شهر أبريل 2026 (بيك خرائط جوجل)", "title_en": "April 2026 (Google Maps Record Peak)", "meta_spend": "$184.17", "meta_spend_sub": "AED 676.36 | CPC قياسي $0.022", "paid_impr": "273.5K", "paid_impr_sub": "Meta High-Efficiency Ad", "paid_clicks": "8,198", "paid_clicks_sub": "أعلى نقرات ميتا بالعام", "ga4_sessions": "2,340", "ga4_sub": "580 جلسة متفاعلة", "ig_reach": "28.0K", "ig_sub": "12 منشور (55 تفاعل)", "fb_views": "272,328", "fb_sub": "680 تفاعل", "li_followers": "16,550", "li_sub": "11,389 ظهور عضوي", "maps_clicks": "104", "maps_sub": "+73.3% نمو سنوي | 203 اتجاه للمصنع", "seo_impr": "1,480", "seo_sub": "4 نقرات", "leads": "4 ليدز", "highlight_ar": "أبريل حقق الرقم القياسي السنوي على Google Maps بـ 104 نقرة للموقع و 203 طلب مسار لمصنع القوز (+73.3% نمو سنوي)، بجانب تحقيق أرخص تكلفة نقرة إعلانية في تاريخ الحملات ($0.022).", "highlight_en": "April delivered all-time record on Google Business Profile with 104 website clicks and 203 factory directions (+73.3% YoY), alongside record lowest CPC of $0.022 on Meta.", "ga4_channels": [780, 290, 640, 460, 140, 0, 30], "ga4_badge": "2,340 Sessions (أبريل 2026)", "ga4_badge_en": "2,340 Sessions (April 2026)", "meta_audit_spend": "$184.17 (AED 676.36)", "meta_audit_impr": "265,059 ظهور", "meta_audit_reach": "175,307 شخص فريد", "meta_audit_clicks": "8,198 نقرة", "meta_audit_cpc": "$0.022 (أرخص نقرة سنوية)", "meta_audit_best": "حملة التصميم الداخلي + بيك النقرات 8,198", "meta_audit_badge": "أبريل 2026 (بيك النقرات $0.022 CPC)", "meta_audit_badge_en": "April 2026 (Record Clicks & $0.022 CPC)"}, "2026-03": {"title_ar": "شهر مارس 2026 (يوم المرأة العالمي)", "title_en": "March 2026 (Women Day Campaign)", "meta_spend": "$4.02", "meta_spend_sub": "AED 14.76 | تجربة مصغرة", "paid_impr": "3,277", "paid_impr_sub": "CTR استثنائي 3.11%", "paid_clicks": "102", "paid_clicks_sub": "كفاءة نقر عالية", "ga4_sessions": "1,637", "ga4_sub": "420 جلسة متفاعلة", "ig_reach": "8.5K", "ig_sub": "16 منشور (73 تفاعل)", "fb_views": "12,500", "fb_sub": "515 تفاعل", "li_followers": "16,100", "li_sub": "13,572 ظهور عضوي", "maps_clicks": "72", "maps_sub": "160 بحث و 78 مسار", "seo_impr": "1,350", "seo_sub": "4 نقرات", "leads": "0", "highlight_ar": "مارس شهد انطلاق أولى حملات المحتوى الإنساني (يوم المرأة) مع كفاءة نقر عالية جداً في الإعلانات (CTR 3.11%) وتجهيز البنية التحتية لحملات الربع الثاني.", "highlight_en": "March marked the launch of human-centric campaigns (Women Day) with exceptional ad click efficiency (CTR 3.11%) laying groundwork for Q2 growth.", "ga4_channels": [580, 75, 460, 390, 110, 0, 22], "ga4_badge": "1,637 Sessions (مارس 2026)", "ga4_badge_en": "1,637 Sessions (March 2026)", "meta_audit_spend": "$4.02 (AED 14.76)", "meta_audit_impr": "3,278 ظهور", "meta_audit_reach": "3,035 شخص فريد", "meta_audit_clicks": "102 نقرة", "meta_audit_cpc": "$0.039", "meta_audit_best": "حملة يوم المرأة (CTR استثنائي 3.11%)", "meta_audit_badge": "مارس 2026 (تجربة يوم المرأة)", "meta_audit_badge_en": "March 2026 (Women's Day Test)"}, "2026-02": {"title_ar": "شهر فبراير 2026 (بدء الإعلانات)", "title_en": "February 2026 (Ad Campaigns Launch)", "meta_spend": "$11.75", "meta_spend_sub": "AED 43.15 | أول حملة ممولة", "paid_impr": "7,802", "paid_impr_sub": "Meta First Campaign", "paid_clicks": "179", "paid_clicks_sub": "CPC $0.065", "ga4_sessions": "1,820", "ga4_sub": "440 جلسة متفاعلة", "ig_reach": "3.2K", "ig_sub": "11 منشور (55 تفاعل)", "fb_views": "15,696", "fb_sub": "أول قفزة ريلز فيسبوك", "li_followers": "15,600", "li_sub": "17,492 ظهور (3.15% Eng)", "maps_clicks": "68", "maps_sub": "145 بحث و 62 مسار", "seo_impr": "1,120", "seo_sub": "3 نقرات", "leads": "0", "highlight_ar": "فبراير شهد إطلاق أول حملة إعلانية تجريبية لشركة UMI على ميتا، مع بداية تجربة ريلز فيسبوك التي حققت فوراً أكثر من 15 ألف مشاهدة أولية.", "highlight_en": "February launched the very first Meta ad test campaigns, while Facebook Reels delivered an immediate proof of concept with over 15,000 views.", "ga4_channels": [680, 45, 470, 480, 120, 0, 25], "ga4_badge": "1,820 Sessions (فبراير 2026 - بداية الإعلانات)", "ga4_badge_en": "1,820 Sessions (February 2026)", "meta_audit_spend": "$11.75 (AED 43.15)", "meta_audit_impr": "7,802 ظهور", "meta_audit_reach": "6,314 شخص فريد", "meta_audit_clicks": "179 نقرة", "meta_audit_cpc": "$0.065", "meta_audit_best": "أول حملة تجريبية ممولة للشركة (First Campaign Feb)", "meta_audit_badge": "فبراير 2026 (انطلاق أول إعلان ممول)", "meta_audit_badge_en": "February 2026 (First Paid Ad Launch)"}, "2026-01": {"title_ar": "شهر يناير 2026 (بداية الخطة السنوية)", "title_en": "January 2026 (Strategy Kickoff)", "meta_spend": "$0.00", "meta_spend_sub": "AED 0.00 | لا إعلانات ممولة", "paid_impr": "0", "paid_impr_sub": "ترافيك عضوي 100%", "paid_clicks": "0", "paid_clicks_sub": "0 نقرة مدفوعة", "ga4_sessions": "1,580", "ga4_sub": "390 جلسة متفاعلة", "ig_reach": "1.8K", "ig_sub": "13 منشور (79 تفاعل)", "fb_views": "138", "fb_sub": "410 تفاعلات", "li_followers": "15,200", "li_sub": "13,210 ظهور (4.03% Eng)", "maps_clicks": "54", "maps_sub": "112 بحث و 48 مسار", "seo_impr": "850", "seo_sub": "2 نقرات", "leads": "0", "highlight_ar": "يناير كان شهر التأسيس الأولي: تحسين محركات البحث لموقع الشركة (SEO)، جدولة خطة المحتوى العضوي، وبناء المتابعين على لينكدإن وإنستجرام بدون أي صرف إعلاني.", "highlight_en": "January established the digital foundation: SEO optimization, organic content scheduling, and LinkedIn audience building without paid ad spend.", "ga4_channels": [620, 0, 360, 470, 110, 0, 20], "ga4_badge": "1,580 Sessions (يناير 2026 - بدون إعلانات ممولة 100% عضوي)", "ga4_badge_en": "1,580 Sessions (January 2026 - 100% Organic, $0 Paid)", "meta_audit_spend": "$0.00 (AED 0.00)", "meta_audit_impr": "0 ظهور", "meta_audit_reach": "0 شخص", "meta_audit_clicks": "0 نقرة", "meta_audit_cpc": "$0.00 (لا توجد إعلانات ممولة)", "meta_audit_best": "لا توجد حملات ممولة (تأسيس عضوي 100%)", "meta_audit_badge": "يناير 2026 (بدون أي إعلانات ممولة)", "meta_audit_badge_en": "January 2026 (100% Organic, $0 Paid Ads)"}};
 
   let currentMonthKey = 'all';
   let isDark = false;
@@ -1259,8 +1400,19 @@
       badgeChannels.innerText = isArabic ? d.ga4_badge : d.ga4_badge_en;
     }
 
+        // Update Meta Ads Audit Card
+    if (document.getElementById('meta-audit-spend') && d.meta_audit_spend) {
+      document.getElementById('meta-audit-spend').innerText = d.meta_audit_spend;
+      document.getElementById('meta-audit-impr').innerText = d.meta_audit_impr;
+      document.getElementById('meta-audit-reach').innerText = d.meta_audit_reach;
+      document.getElementById('meta-audit-clicks').innerText = d.meta_audit_clicks;
+      document.getElementById('meta-audit-cpc').innerText = d.meta_audit_cpc;
+      document.getElementById('meta-audit-best').innerText = d.meta_audit_best;
+      document.getElementById('meta-audit-badge').innerText = isArabic ? d.meta_audit_badge : d.meta_audit_badge_en;
+    }
+
     // Highlight row in tables
-    document.querySelectorAll('#table-roi tbody tr, #table-overview tbody tr').forEach(tr => {
+    document.querySelectorAll('#table-roi tbody tr, #table-overview tbody tr, #table-meta-monthly tbody tr').forEach(tr => {
       if (mKey === 'all') {
         tr.classList.remove('highlight-row');
         tr.style.display = '';
@@ -1270,12 +1422,46 @@
           tr.style.display = '';
         } else {
           tr.classList.remove('highlight-row');
+          tr.style.display = '';
         }
       }
     });
+
+    // Update Meta Campaigns Table Filtering
+    const janMsg = document.querySelector('#table-meta-campaigns .no-ads-jan');
+    const campBadge = document.getElementById('meta-campaigns-badge');
+    if (mKey === '2026-01') {
+      if (janMsg) janMsg.style.display = '';
+      document.querySelectorAll('#table-meta-campaigns tbody tr:not(.no-ads-jan)').forEach(tr => {
+        tr.style.display = 'none';
+        tr.classList.remove('highlight-row');
+      });
+      if (campBadge) campBadge.innerText = isArabic ? '0 حملات (تأسيس عضوي)' : '0 Campaigns (Organic)';
+    } else if (mKey === 'all') {
+      if (janMsg) janMsg.style.display = 'none';
+      document.querySelectorAll('#table-meta-campaigns tbody tr:not(.no-ads-jan)').forEach(tr => {
+        tr.style.display = '';
+        tr.classList.remove('highlight-row');
+      });
+      if (campBadge) campBadge.innerText = isArabic ? '8 حملات نشطة' : '8 Active Campaigns';
+    } else {
+      if (janMsg) janMsg.style.display = 'none';
+      let activeCount = 0;
+      document.querySelectorAll('#table-meta-campaigns tbody tr:not(.no-ads-jan)').forEach(tr => {
+        const mList = tr.getAttribute('data-campaign-months') || '';
+        if (mList.includes(mKey)) {
+          tr.style.display = '';
+          tr.classList.add('highlight-row');
+          activeCount++;
+        } else {
+          tr.style.display = 'none';
+          tr.classList.remove('highlight-row');
+        }
+      });
+      if (campBadge) campBadge.innerText = (isArabic ? (activeCount + ' حملات نشطة بالشهر') : (activeCount + ' Active in Month'));
+    }
   }
 
-  // Theme Switching
   function toggleTheme() {
     isDark = !isDark;
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
