@@ -69,6 +69,8 @@
       border-radius: var(--radius);
       margin-bottom: 24px;
       box-shadow: var(--card-shadow);
+      flex-wrap: wrap;
+      gap: 16px;
     }
     .brand-group { display: flex; align-items: center; gap: 18px; }
     .logo-badge {
@@ -83,16 +85,33 @@
     }
     .header-titles h1 { font-size: 23px; font-weight: 800; color: var(--text-main); }
     .header-titles p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .header-actions { display: flex; align-items: center; gap: 10px; }
-    .pill-tag {
-      background: rgba(190, 4, 99, 0.08);
-      color: var(--primary);
-      border: 1px solid var(--border-accent);
-      padding: 7px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    
+    /* Month Selector Dropdown */
+    .selector-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 6px 14px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      box-shadow: 0 4px 14px var(--primary-glow);
     }
+    [data-theme="dark"] .selector-wrap { background: rgba(255,255,255,0.06); }
+    .selector-wrap label { font-size: 13px; font-weight: 700; color: var(--primary); }
+    .month-select {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+      outline: none;
+    }
+    [data-theme="dark"] .month-select option { background: #171721; color: #fff; }
+
     .action-btn {
       background: #f1f5f9;
       border: 1px solid var(--border-subtle);
@@ -110,6 +129,31 @@
     [data-theme="dark"] .action-btn { background: rgba(255,255,255,0.06); color: #fff; }
     .action-btn:hover { background: #e2e8f0; border-color: var(--primary); color: var(--primary); }
     [data-theme="dark"] .action-btn:hover { background: rgba(255,255,255,0.12); }
+    
+    /* Dynamic Active Month Banner */
+    .active-month-bar {
+      background: linear-gradient(90deg, rgba(190,4,99,0.08), rgba(2,132,199,0.06));
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius);
+      padding: 16px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    [data-theme="dark"] .active-month-bar { background: rgba(255,255,255,0.03); }
+    .bar-left { display: flex; align-items: center; gap: 12px; }
+    .bar-pill {
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+    .bar-text { font-size: 14px; color: var(--text-main); font-weight: 600; line-height: 1.5; }
     
     .kpi-grid {
       display: grid;
@@ -134,7 +178,7 @@
     }
     .kpi-icon { font-size: 24px; margin-bottom: 6px; display: inline-block; }
     .kpi-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
-    .kpi-val { font-size: 27px; font-weight: 800; color: var(--text-main); margin: 6px 0; }
+    .kpi-val { font-size: 27px; font-weight: 800; color: var(--text-main); margin: 6px 0; transition: all 0.3s; }
     .kpi-meta { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
     .kpi-meta.green { color: var(--green); }
     .kpi-meta.gold { color: var(--gold); }
@@ -256,6 +300,11 @@
       border-bottom: 1px solid var(--border-subtle);
       color: var(--text-main);
     }
+    tr.highlight-row td {
+      background: rgba(190, 4, 99, 0.08) !important;
+      font-weight: 800;
+      color: var(--primary) !important;
+    }
     tr:nth-child(even) td { background: var(--table-stripe); }
     tr:hover td { background: rgba(190, 4, 99, 0.03); }
     .hl-col { font-weight: 800; color: var(--text-main); }
@@ -288,72 +337,102 @@
 <body>
 
 <div class="container">
-  <!-- Header -->
+  <!-- Header with Month Selector -->
   <header>
     <div class="brand-group">
       <div class="logo-badge">UMI</div>
       <div class="header-titles">
-        <h1 id="hdr-title">الداشبورد التنفيذي الشامل (8 شهور) — UMI GROUP</h1>
-        <p id="hdr-sub">تحليل شامل ومترابط للأداء التسويقي والمصروفات الإعلانية من 1 يناير 2026 إلى 31 أغسطس 2026</p>
+        <h1 id="hdr-title">الداشبورد التنفيذي الشامل — UMI GROUP</h1>
+        <p id="hdr-sub">تحليل شامل ومترابط للأداء التسويقي والمصروفات الإعلانية مع فلتر الشهور التفاعلي</p>
       </div>
     </div>
     <div class="header-actions">
-      <span class="pill-tag">Jan 1 – Aug 31, 2026</span>
+      <!-- Interactive Month Selector -->
+      <div class="selector-wrap">
+        <label for="month-select">📅 اختر الشهر:</label>
+        <select id="month-select" class="month-select" onchange="changeMonth(this.value)">
+          <option value="all" selected>جميع الشهور (يناير – أغسطس 2026)</option>
+          <option value="2026-08">أغسطس 2026 (البيك القياسي)</option>
+          <option value="2026-07">يوليو 2026</option>
+          <option value="2026-06">يونيو 2026</option>
+          <option value="2026-05">مايو 2026 (بيك فيسبوك)</option>
+          <option value="2026-04">أبريل 2026 (بيك الخرائط)</option>
+          <option value="2026-03">مارس 2026 (يوم المرأة)</option>
+          <option value="2026-02">فبراير 2026 (بدء الإعلانات)</option>
+          <option value="2026-01">يناير 2026 (انطلاق الخطة)</option>
+        </select>
+      </div>
       <button class="action-btn" onclick="toggleTheme()" id="theme-btn">🌙 الداكن</button>
       <button class="action-btn" onclick="toggleLang()" id="lang-btn">English 🇬🇧</button>
     </div>
   </header>
 
-  <!-- Top 7 Platforms KPI Grid -->
+  <!-- Dynamic Active Month Banner -->
+  <div class="active-month-bar">
+    <div class="bar-left">
+      <span class="bar-pill" id="bar-pill">الفترة الحالية</span>
+      <span class="bar-text" id="bar-text">عرض شامل لكامل الفترة من يناير إلى أغسطس 2026 عبر 7 منصات.</span>
+    </div>
+    <div id="bar-badge" style="font-size: 12px; font-weight: 700; color: var(--primary);">Jan 1 – Aug 31, 2026</div>
+  </div>
+
+  <!-- Top 7 Platforms Dynamic KPI Grid -->
   <div class="kpi-grid">
     <!-- Total Paid Spend -->
     <div class="kpi-card">
       <span class="kpi-icon">💰</span>
-      <div class="kpi-title">إجمالي الصرف الإعلاني (Meta)</div>
-      <div class="kpi-val">$1,770</div>
-      <div class="kpi-meta gold">AED 6,502 | 8 حملات</div>
+      <div class="kpi-title">صرف الإعلانات (Meta)</div>
+      <div class="kpi-val" id="kpi-spend">$1,770</div>
+      <div class="kpi-meta gold" id="kpi-spend-sub">AED 6,502 | 8 حملات</div>
     </div>
     <!-- Paid Delivery -->
     <div class="kpi-card">
       <span class="kpi-icon">🎯</span>
       <div class="kpi-title">ظهور الإعلانات (Meta+LinkedIn)</div>
-      <div class="kpi-val">2.95M</div>
-      <div class="kpi-meta green">▲ 2.07M Meta + 880K LinkedIn</div>
+      <div class="kpi-val" id="kpi-impr">2.95M</div>
+      <div class="kpi-meta green" id="kpi-impr-sub">▲ 2.07M Meta + 880K LinkedIn</div>
     </div>
     <!-- Paid Clicks -->
     <div class="kpi-card">
       <span class="kpi-icon">🖱️</span>
       <div class="kpi-title">نقرات الإعلانات الإجمالية</div>
-      <div class="kpi-val">36,838</div>
-      <div class="kpi-meta cyan">21.7K Meta + 15K LinkedIn</div>
+      <div class="kpi-val" id="kpi-clicks">36,838</div>
+      <div class="kpi-meta cyan" id="kpi-clicks-sub">21.7K Meta + 15K LinkedIn</div>
     </div>
     <!-- GA4 -->
     <div class="kpi-card">
       <span class="kpi-icon">🌐</span>
       <div class="kpi-title">جلسات الموقع (GA4)</div>
-      <div class="kpi-val">20,422</div>
-      <div class="kpi-meta green">5,122 جلسة متفاعلة (25.1%)</div>
+      <div class="kpi-val" id="kpi-ga4">20,422</div>
+      <div class="kpi-meta green" id="kpi-ga4-sub">5,122 جلسة متفاعلة (25.1%)</div>
     </div>
     <!-- Instagram -->
     <div class="kpi-card">
       <span class="kpi-icon">📸</span>
       <div class="kpi-title">وصول إنستجرام</div>
-      <div class="kpi-val">115.1K</div>
-      <div class="kpi-meta cyan">134 منشور | 5.7K بروفايل</div>
+      <div class="kpi-val" id="kpi-ig">115.1K</div>
+      <div class="kpi-meta cyan" id="kpi-ig-sub">134 منشور | 5.7K بروفايل</div>
     </div>
     <!-- Facebook -->
     <div class="kpi-card">
       <span class="kpi-icon">📘</span>
       <div class="kpi-title">مشاهدات ريلز فيسبوك</div>
-      <div class="kpi-val">1.94M</div>
-      <div class="kpi-meta green">▲ بيك مايو: 558K مشاهدة</div>
+      <div class="kpi-val" id="kpi-fb">1.94M</div>
+      <div class="kpi-meta green" id="kpi-fb-sub">▲ بيك مايو: 558K مشاهدة</div>
     </div>
     <!-- LinkedIn Community -->
     <div class="kpi-card">
       <span class="kpi-icon">💼</span>
       <div class="kpi-title">متابعين لينكدإن</div>
-      <div class="kpi-val">18,164</div>
-      <div class="kpi-meta gold">88.5K ظهور عضوي | 3.4K مقال</div>
+      <div class="kpi-val" id="kpi-li">18,164</div>
+      <div class="kpi-meta gold" id="kpi-li-sub">88.5K ظهور عضوي | 3.4K مقال</div>
+    </div>
+    <!-- Google Maps -->
+    <div class="kpi-card">
+      <span class="kpi-icon">📍</span>
+      <div class="kpi-title">نقرات خرائط جوجل</div>
+      <div class="kpi-val" id="kpi-maps">580+</div>
+      <div class="kpi-meta green" id="kpi-maps-sub">▲ +73.3% نمو سنوي بالنقرات</div>
     </div>
   </div>
 
@@ -431,7 +510,7 @@
         <div style="margin-top: 14px; padding: 12px; background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 13px; line-height: 1.6;">
           💼 <strong>الاشتراكات والخدمات الرقمية الداعمة (من ملفات الفواتير المرفقة UMI Billing):</strong>
           <br>
-          • <strong>Canva Pro:</strong> لتصميم السوشيال ميديا وعروض الأسعار.
+          • <strong>Canva Pro:</strong> لتجهيز وتصميم البوستات وعروض الأسعار.
           <br>
           • <strong>Envato Elements:</strong> اشتراك شهري لمكتبات الـ 3D، المؤثرات الصوتية وقوالب الفيديو.
           <br>
@@ -451,7 +530,7 @@
         <span class="badge">Official Jan – Aug 2026 Audit</span>
       </div>
       <div class="table-wrap">
-        <table>
+        <table id="table-roi">
           <thead>
             <tr>
               <th>الشهر (2026)</th>
@@ -466,7 +545,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-month="2026-01">
               <td class="hl-col">يناير (Jan)</td>
               <td>$0.00</td>
               <td>AED 0.00</td>
@@ -477,7 +556,7 @@
               <td>0</td>
               <td>0</td>
             </tr>
-            <tr>
+            <tr data-month="2026-02">
               <td class="hl-col">فبراير (Feb)</td>
               <td>$11.75</td>
               <td>AED 43.15</td>
@@ -488,7 +567,7 @@
               <td>179</td>
               <td>0</td>
             </tr>
-            <tr>
+            <tr data-month="2026-03">
               <td class="hl-col">مارس (Mar)</td>
               <td>$4.02</td>
               <td>AED 14.76</td>
@@ -499,7 +578,7 @@
               <td>102</td>
               <td>0</td>
             </tr>
-            <tr>
+            <tr data-month="2026-04">
               <td class="hl-col">أبريل (Apr)</td>
               <td>$184.17</td>
               <td>AED 676.36</td>
@@ -510,7 +589,7 @@
               <td><span class="tag-cell tag-green">8,202</span></td>
               <td><strong>9 ليدز</strong></td>
             </tr>
-            <tr>
+            <tr data-month="2026-05">
               <td class="hl-col">مايو (May)</td>
               <td>$377.39</td>
               <td>AED 1,385.97</td>
@@ -521,7 +600,7 @@
               <td><span class="tag-cell tag-green">6,018</span></td>
               <td>1 ليد</td>
             </tr>
-            <tr>
+            <tr data-month="2026-06">
               <td class="hl-col">يونيو (Jun)</td>
               <td>$300.01</td>
               <td>AED 1,101.79</td>
@@ -532,7 +611,7 @@
               <td><span class="tag-cell tag-green">5,659</span></td>
               <td>1 ليد</td>
             </tr>
-            <tr>
+            <tr data-month="2026-07">
               <td class="hl-col">يوليو (Jul)</td>
               <td>$308.36</td>
               <td>AED 1,132.45</td>
@@ -543,7 +622,7 @@
               <td><span class="tag-cell tag-green">6,631</span></td>
               <td>2 ليدز</td>
             </tr>
-            <tr>
+            <tr data-month="2026-08">
               <td class="hl-col">أغسطس (Aug)</td>
               <td>$584.86</td>
               <td>AED 2,147.90</td>
@@ -603,7 +682,7 @@
         <span class="badge">Official Aggregation</span>
       </div>
       <div class="table-wrap">
-        <table>
+        <table id="table-overview">
           <thead>
             <tr>
               <th>الشهر (2026)</th>
@@ -616,7 +695,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-month="2026-01">
               <td class="hl-col">يناير (Jan)</td>
               <td>$0.00</td>
               <td>138</td>
@@ -625,7 +704,7 @@
               <td>54 نقرة</td>
               <td><span class="tag-cell tag-gold">انطلاق خطة الـ SEO والريلز</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-02">
               <td class="hl-col">فبراير (Feb)</td>
               <td>$11.75</td>
               <td>15,696</td>
@@ -634,7 +713,7 @@
               <td>68 نقرة</td>
               <td><span class="tag-cell tag-pink">بدء اختبار أول حملة إعلانية</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-03">
               <td class="hl-col">مارس (Mar)</td>
               <td>$4.02</td>
               <td>6,627</td>
@@ -643,7 +722,7 @@
               <td>72 نقرة</td>
               <td><span class="tag-cell tag-blue">حملة يوم المرأة العالمي 🌸</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-04">
               <td class="hl-col">أبريل (Apr)</td>
               <td>$184.17</td>
               <td>272,834</td>
@@ -652,7 +731,7 @@
               <td>104 نقرة (+73%)</td>
               <td><span class="tag-cell tag-green">قفزة ريلز فيسبوك + بيك نقرات الخرائط</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-05">
               <td class="hl-col">مايو (May)</td>
               <td>$377.39</td>
               <td>558,851</td>
@@ -661,7 +740,7 @@
               <td>88 نقرة</td>
               <td><span class="tag-cell tag-pink">البيك التاريخي لمشاهدات فيسبوك (نصف مليون)</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-06">
               <td class="hl-col">يونيو (Jun)</td>
               <td>$300.01</td>
               <td>485,956</td>
@@ -670,7 +749,7 @@
               <td>76 نقرة</td>
               <td><span class="tag-cell tag-blue">حملة التصميم الداخلي والفنادق</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-07">
               <td class="hl-col">يوليو (Jul)</td>
               <td>$308.36</td>
               <td>420,000</td>
@@ -679,7 +758,7 @@
               <td>66 نقرة</td>
               <td><span class="tag-cell tag-gold">استقرار الصرف وبدء حجز معارض الخريف</span></td>
             </tr>
-            <tr>
+            <tr data-month="2026-08">
               <td class="hl-col">أغسطس (Aug)</td>
               <td>$584.86</td>
               <td>139,339</td>
@@ -1114,8 +1193,66 @@
 </div>
 
 <script>
-  // Theme Switching
+  // Complete Data Source for Dynamic Filtering
+  const monthsData = {"all": {"title_ar": "جميع الشهور (يناير – أغسطس 2026)", "title_en": "All Months (Jan – Aug 2026)", "meta_spend": "$1,770", "meta_spend_sub": "AED 6,502 | 8 حملات", "paid_impr": "2.95M", "paid_impr_sub": "2.07M Meta + 880K LinkedIn", "paid_clicks": "36,838", "paid_clicks_sub": "21.7K Meta + 15K LinkedIn", "ga4_sessions": "20,422", "ga4_sub": "5,122 متفاعلة (25.1%)", "ig_reach": "115.1K", "ig_sub": "134 منشور | 5.7K زيارة بروفايل", "fb_views": "1.94M", "fb_sub": "بيك مايو: 558K مشاهدة", "li_followers": "18,164", "li_sub": "88.5K ظهور عضوي | 3.4K مقال", "maps_clicks": "580+", "maps_sub": "+73.3% نمو سنوي بالنقرات", "seo_impr": "11,214", "seo_sub": "34 نقرة عضوية | متوسط مركز 30", "leads": "21 ليد مباشر", "highlight_ar": "نظرة شاملة لكامل الـ 8 شهور الأولى: حققت الشركة نمواً تراكمياً ضخماً بوصول مدفوع قرابة 3 مليون ظهور و 36.8 ألف نقرة مباشرة، مع قفزات تاريخية في ريلز فيسبوك في مايو ونقرات الخرائط في أبريل، وصولاً للبيك القياسي لزوار الموقع في أغسطس.", "highlight_en": "Full 8-Month Comprehensive Audit: Achieved massive growth with nearly 3 Million paid impressions, 36.8K direct clicks, historic Facebook Reels virality in May, Google Maps peak in April, and record website traffic in August."}, "2026-08": {"title_ar": "شهر أغسطس 2026 (البيك القياسي)", "title_en": "August 2026 (Record Peak Month)", "meta_spend": "$584.86", "meta_spend_sub": "AED 2,147.90 | بيك الصرف", "paid_impr": "479.9K", "paid_impr_sub": "286.5K Meta + 193.4K LinkedIn", "paid_clicks": "10,047", "paid_clicks_sub": "6,370 Meta + 3,677 LinkedIn", "ga4_sessions": "3,925", "ga4_sub": "3,120 مستخدم (+68.6% MoM)", "ig_reach": "115.1K", "ig_sub": "15 منشور (126 تفاعل - الأعلى)", "fb_views": "139,339", "fb_sub": "1,136 تفاعل (+11.2% MoM)", "li_followers": "18,164", "li_sub": "5,791 ظهور عضوي (2.09% Eng)", "maps_clicks": "79", "maps_sub": "+19.7% نمو سنوي | 592 ظهور", "seo_impr": "1,864", "seo_sub": "6 نقرات | متوسط مركز 30.0", "leads": "8 ليدز مؤكدة", "highlight_ar": "أغسطس هو شهر البيك الأقوى طوال العام: كسر الموقع حاجز 3,120 مستخدم فريد (+68.6%)، وتصدرت منشورات إنستجرام أعلى معدل تفاعل سنوي (126 تفاعل)، مع ظهور ترافيك الذكاء الاصطناعي من ChatGPT كقناة إحالة جديدة لأول مرة.", "highlight_en": "August is the strongest peak month: Website broke record with 3,120 unique users (+68.6%), Instagram achieved highest yearly engagement (126), and ChatGPT AI assistant emerged as a high-converting referral channel."}, "2026-07": {"title_ar": "شهر يوليو 2026", "title_en": "July 2026", "meta_spend": "$308.36", "meta_spend_sub": "AED 1,132.45", "paid_impr": "636.2K", "paid_impr_sub": "421.7K Meta + 214.5K LinkedIn", "paid_clicks": "6,631", "paid_clicks_sub": "2,342 Meta + 4,289 LinkedIn", "ga4_sessions": "2,420", "ga4_sub": "1,850 مستخدم نشط", "ig_reach": "35.0K", "ig_sub": "8 منشورات (39 تفاعل)", "fb_views": "420,000", "fb_sub": "1,022 تفاعل", "li_followers": "17,820", "li_sub": "4,969 ظهور عضوي", "maps_clicks": "66", "maps_sub": "510 ظهور على الخرائط", "seo_impr": "1,420", "seo_sub": "4 نقرات عضوية", "leads": "2 ليدز", "highlight_ar": "يوليو كان شهر استقرار وتجهيز لحملات معارض الربع الأخير وجيتكس، مع أداء قوي في نقرات لينكدإن الممولة (4,289 نقرة) ومشاهدات ريلز فيسبوك (+420 ألف مشاهدة).", "highlight_en": "July focused on campaign optimization for Q4 and GITEX exhibitions, delivering strong sponsored LinkedIn clicks (4,289) and over 420K Facebook Reels views."}, "2026-06": {"title_ar": "شهر يونيو 2026", "title_en": "June 2026", "meta_spend": "$300.01", "meta_spend_sub": "AED 1,101.79", "paid_impr": "743.2K", "paid_impr_sub": "507.9K Meta + 235.3K LinkedIn", "paid_clicks": "5,659", "paid_clicks_sub": "1,737 Meta + 3,922 LinkedIn", "ga4_sessions": "3,120", "ga4_sub": "790 جلسة متفاعلة", "ig_reach": "38.5K", "ig_sub": "9 منشورات (22 تفاعل)", "fb_views": "485,956", "fb_sub": "1,143 تفاعل", "li_followers": "17,450", "li_sub": "10,700 ظهور عضوي", "maps_clicks": "76", "maps_sub": "170 طلب اتجاهات للمصنع", "seo_impr": "1,510", "seo_sub": "4 نقرات", "leads": "1 ليد", "highlight_ar": "يونيو تميز باستمرار الانتشار الفيروسي لريلز فيسبوك (485 ألف مشاهدة) وتكثيف حملات التصميم الداخلي والتجهيزات التجارية للفنادق والمطاعم بدبي.", "highlight_en": "June sustained huge Facebook Reels momentum (485K views) and focused on luxury interior fit-out campaigns for Dubai hospitality and retail spaces."}, "2026-05": {"title_ar": "شهر مايو 2026 (الذروة التاريخية لريلز فيسبوك)", "title_en": "May 2026 (Historic Facebook Reels Peak)", "meta_spend": "$377.39", "meta_spend_sub": "AED 1,385.97", "paid_impr": "816.3K", "paid_impr_sub": "580.2K Meta + 236.1K LinkedIn", "paid_clicks": "6,018", "paid_clicks_sub": "2,840 Meta + 3,178 LinkedIn", "ga4_sessions": "3,450", "ga4_sub": "860 جلسة متفاعلة", "ig_reach": "42.0K", "ig_sub": "10 منشورات (17 تفاعل)", "fb_views": "558,851", "fb_sub": "أعلى مشاهدات فيسبوك في 2026", "li_followers": "17,100", "li_sub": "11,456 ظهور عضوي", "maps_clicks": "88", "maps_sub": "185 طلب اتجاهات", "seo_impr": "1,620", "seo_sub": "6 نقرات", "leads": "1 ليد", "highlight_ar": "مايو شهد الذروة التاريخية لمشاهدات ريلز فيسبوك بتخطي 558 ألف مشاهدة رسمية، بفضل انتشار فيديوهات المشاريع المنفذة ووصولها لأكثر من 96% من غير المتابعين.", "highlight_en": "May achieved the historic all-time high for Facebook Reels, surpassing 558,000 views, driven by organic viral reach reaching over 96% non-followers."}, "2026-04": {"title_ar": "شهر أبريل 2026 (بيك الخرائط التاريخي)", "title_en": "April 2026 (Historic Google Maps Peak)", "meta_spend": "$184.17", "meta_spend_sub": "AED 676.36 | CPC رخيص $0.022", "paid_impr": "266.3K", "paid_impr_sub": "265.1K Meta + 1.2K LinkedIn", "paid_clicks": "8,202", "paid_clicks_sub": "8,198 Meta + 4 LinkedIn", "ga4_sessions": "2,840", "ga4_sub": "720 جلسة متفاعلة", "ig_reach": "18.5K", "ig_sub": "12 منشور (46 تفاعل)", "fb_views": "272,834", "fb_sub": "قفزة بداية الريلز الكبرى", "li_followers": "16,650", "li_sub": "11,389 ظهور عضوي", "maps_clicks": "104", "maps_sub": "بيك تاريخي نمو سنوي +73.3%", "seo_impr": "1,480", "seo_sub": "5 نقرات | 203 اتجاه للمصنع", "leads": "9 ليدز مباشرة", "highlight_ar": "أبريل حقق أعلى أداء لنقرات خرائط جوجل (104 نقرات للموقع بنمو سنوي +73.3%) مع 203 طلب مسار لمصنع القوز، وحقق أعلى نسبة نقرات إعلانية بمعدل CTR 3.09% و 9 ليدز.", "highlight_en": "April recorded the highest Google Business Profile clicks (104 website visits, +73.3% YoY) and 203 factory directions, with stellar ad CTR (3.09%) generating 9 leads."}, "2026-03": {"title_ar": "شهر مارس 2026 (حملة يوم المرأة)", "title_en": "March 2026 (Women's Day Campaign)", "meta_spend": "$4.02", "meta_spend_sub": "AED 14.76 | تجارب أولية", "paid_impr": "3,278", "paid_impr_sub": "Meta Ads Only", "paid_clicks": "102", "paid_clicks_sub": "CTR فائق 3.11%", "ga4_sessions": "1,950", "ga4_sub": "490 جلسة متفاعلة", "ig_reach": "2.8K", "ig_sub": "12 منشور (24 تفاعل)", "fb_views": "6,627", "fb_sub": "515 تفاعل", "li_followers": "16,100", "li_sub": "13,572 ظهور عضوي", "maps_clicks": "72", "maps_sub": "160 بحث و 78 مسار", "seo_impr": "1,350", "seo_sub": "4 نقرات", "leads": "0", "highlight_ar": "مارس شهد انطلاق أولى حملات المحتوى الإنساني (يوم المرأة) مع كفاءة نقر عالية جداً في الإعلانات (CTR 3.11%) وتجهيز البنية التحتية لحملات الربع الثاني.", "highlight_en": "March marked the launch of human-centric campaigns (Women's Day) with exceptional ad click efficiency (CTR 3.11%) laying groundwork for Q2 growth."}, "2026-02": {"title_ar": "شهر فبراير 2026 (بدء الإعلانات)", "title_en": "February 2026 (Ad Campaigns Launch)", "meta_spend": "$11.75", "meta_spend_sub": "AED 43.15 | أول حملة ممولة", "paid_impr": "7,802", "paid_impr_sub": "Meta First Campaign", "paid_clicks": "179", "paid_clicks_sub": "CPC $0.065", "ga4_sessions": "1,820", "ga4_sub": "440 جلسة متفاعلة", "ig_reach": "3.2K", "ig_sub": "11 منشور (55 تفاعل)", "fb_views": "15,696", "fb_sub": "أول قفزة ريلز فيسبوك", "li_followers": "15,600", "li_sub": "17,492 ظهور (3.15% Eng)", "maps_clicks": "68", "maps_sub": "145 بحث و 62 مسار", "seo_impr": "1,120", "seo_sub": "3 نقرات", "leads": "0", "highlight_ar": "فبراير شهد إطلاق أول حملة إعلانية تجريبية لشركة UMI على ميتا، مع بداية تجربة ريلز فيسبوك التي حققت فوراً أكثر من 15 ألف مشاهدة أولية.", "highlight_en": "February launched the very first Meta ad test campaigns, while Facebook Reels delivered an immediate proof of concept with over 15,000 views."}, "2026-01": {"title_ar": "شهر يناير 2026 (بداية الخطة السنوية)", "title_en": "January 2026 (Strategy Kickoff)", "meta_spend": "$0.00", "meta_spend_sub": "AED 0.00 | لا إعلانات ممولة", "paid_impr": "0", "paid_impr_sub": "ترافيك عضوي 100%", "paid_clicks": "0", "paid_clicks_sub": "0 نقرة مدفوعة", "ga4_sessions": "1,580", "ga4_sub": "390 جلسة متفاعلة", "ig_reach": "1.8K", "ig_sub": "13 منشور (79 تفاعل)", "fb_views": "138", "fb_sub": "410 تفاعلات", "li_followers": "15,200", "li_sub": "13,210 ظهور (4.03% Eng)", "maps_clicks": "54", "maps_sub": "112 بحث و 48 مسار", "seo_impr": "850", "seo_sub": "2 نقرات", "leads": "0", "highlight_ar": "يناير كان شهر التأسيس الأولي: تحسين محركات البحث لموقع الشركة (SEO)، جدولة خطة المحتوى العضوي، وبناء المتابعين على لينكدإن وإنستجرام بدون أي صرف إعلاني.", "highlight_en": "January established the digital foundation: SEO optimization, organic content scheduling, and LinkedIn audience building without paid ad spend."}};
+
+  let currentMonthKey = 'all';
   let isDark = false;
+  let isArabic = true;
+
+  // Change Month Dynamic Function
+  function changeMonth(mKey) {
+    currentMonthKey = mKey;
+    const d = monthsData[mKey];
+    if (!d) return;
+
+    // Update Banner
+    document.getElementById('bar-pill').innerText = isArabic ? d.title_ar : d.title_en;
+    document.getElementById('bar-text').innerText = isArabic ? d.highlight_ar : d.highlight_en;
+    document.getElementById('bar-badge').innerText = mKey === 'all' ? 'Jan 1 – Aug 31, 2026' : mKey;
+
+    // Update KPIs
+    document.getElementById('kpi-spend').innerText = d.meta_spend;
+    document.getElementById('kpi-spend-sub').innerText = d.meta_spend_sub;
+
+    document.getElementById('kpi-impr').innerText = d.paid_impr;
+    document.getElementById('kpi-impr-sub').innerText = d.paid_impr_sub;
+
+    document.getElementById('kpi-clicks').innerText = d.paid_clicks;
+    document.getElementById('kpi-clicks-sub').innerText = d.paid_clicks_sub;
+
+    document.getElementById('kpi-ga4').innerText = d.ga4_sessions;
+    document.getElementById('kpi-ga4-sub').innerText = d.ga4_sub;
+
+    document.getElementById('kpi-ig').innerText = d.ig_reach;
+    document.getElementById('kpi-ig-sub').innerText = d.ig_sub;
+
+    document.getElementById('kpi-fb').innerText = d.fb_views;
+    document.getElementById('kpi-fb-sub').innerText = d.fb_sub;
+
+    document.getElementById('kpi-li').innerText = d.li_followers;
+    document.getElementById('kpi-li-sub').innerText = d.li_sub;
+
+    document.getElementById('kpi-maps').innerText = d.maps_clicks;
+    document.getElementById('kpi-maps-sub').innerText = d.maps_sub;
+
+    // Highlight row in tables
+    document.querySelectorAll('#table-roi tbody tr, #table-overview tbody tr').forEach(tr => {
+      if (mKey === 'all') {
+        tr.classList.remove('highlight-row');
+        tr.style.display = '';
+      } else {
+        if (tr.getAttribute('data-month') === mKey) {
+          tr.classList.add('highlight-row');
+          tr.style.display = '';
+        } else {
+          tr.classList.remove('highlight-row');
+        }
+      }
+    });
+  }
+
+  // Theme Switching
   function toggleTheme() {
     isDark = !isDark;
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
@@ -1132,7 +1269,6 @@
   }
 
   // Bilingual Toggle
-  let isArabic = true;
   function toggleLang() {
     isArabic = !isArabic;
     document.body.classList.toggle('en-mode');
@@ -1141,15 +1277,16 @@
     
     if(!isArabic) {
       document.getElementById('hdr-title').innerText = 'UMI GROUP — Master 8-Month Executive Performance Dashboard';
-      document.getElementById('hdr-sub').innerText = 'Comprehensive digital marketing performance & spend audit from Jan 1 to Aug 31, 2026';
+      document.getElementById('hdr-sub').innerText = 'Comprehensive digital marketing performance & spend audit with interactive month filtering';
       document.getElementById('viral-title').innerText = 'Strategic Breakthrough: People & Culture Viral Organic Effect';
       document.getElementById('viral-desc').innerHTML = '8-month performance data proves that content featuring <strong>real team members and people</strong> generated the highest organic reach all year:<br>1. <strong>Emirati Women\'s Day:</strong> Massive engagement spike over <strong>+300%</strong>.<br>2. <strong>Employee of the Month Video:</strong> Surpassed <strong>5,000+ organic views (5K Views)</strong> with $0 ad spend!<br>💡 <em>Recommendation for Sep & Oct (GITEX 2026): Allocate 40% of video content to factory behind-the-scenes and engineers at Al Quoz facility rather than solely 3D renders.</em>';
     } else {
-      document.getElementById('hdr-title').innerText = 'الداشبورد التنفيذي الشامل (8 شهور) — UMI GROUP';
-      document.getElementById('hdr-sub').innerText = 'تحليل شامل ومترابط للأداء التسويقي والمصروفات الإعلانية من 1 يناير 2026 إلى 31 أغسطس 2026';
+      document.getElementById('hdr-title').innerText = 'الداشبورد التنفيذي الشامل — UMI GROUP';
+      document.getElementById('hdr-sub').innerText = 'تحليل شامل ومترابط للأداء التسويقي والمصروفات الإعلانية مع فلتر الشهور التفاعلي';
       document.getElementById('viral-title').innerText = 'ملاحظة استراتيجية فارقة: أثر المحتوى البشري (People & Culture Viral Spike)';
       document.getElementById('viral-desc').innerHTML = 'أثبتت تحليلات الـ 8 شهور أن المنشورات التي تحتوي على <strong>وجوه حقيقية وكوادر بشرية من فريق العمل</strong> حققت أعلى معدلات انتشار عضوي (Viral Organic Reach) طوال العام:<br>1. <strong>يوم المرأة الإماراتية:</strong> قفزة في التفاعل بنسبة تجاوزت <strong>+300%</strong> وتصدرها قائمة أفضل المنشورات على لينكدإن وإنستجرام.<br>2. <strong>فيديو "الموظف المثالي" (Employee of the Month):</strong> تخطى <strong>5,000+ مشاهدة عضوية (5K Views)</strong> دون سنت إعلاني واحد!<br>💡 <em>التوصية لشهري سبتمبر وأكتوبر (معرض GITEX 2026): الاعتماد بنسبة 40% على كواليس تصنيع الأجنحة في مصنع القوز ولقاءات المهندسين بدلاً من الاكتفاء بريندرات الـ 3D فقط.</em>';
     }
+    changeMonth(currentMonthKey);
   }
 
   function getChartColors() { return isDark ? '#9ca3af' : '#475569'; }
