@@ -1236,6 +1236,16 @@
     document.getElementById('kpi-maps').innerText = d.maps_clicks;
     document.getElementById('kpi-maps-sub').innerText = d.maps_sub;
 
+    // Control Visibility of Special Viral Note (Only in August and All Months)
+    const viralBanner = document.querySelector('.viral-banner');
+    if (viralBanner) {
+      if (mKey === 'all' || mKey === '2026-08') {
+        viralBanner.style.display = 'flex';
+      } else {
+        viralBanner.style.display = 'none';
+      }
+    }
+
     // Highlight row in tables
     document.querySelectorAll('#table-roi tbody tr, #table-overview tbody tr').forEach(tr => {
       if (mKey === 'all') {
