@@ -373,7 +373,7 @@
       <span class="bar-pill" id="bar-pill">الفترة الحالية</span>
       <span class="bar-text" id="bar-text">عرض شامل لكامل الفترة من يناير إلى أغسطس 2026 عبر 7 منصات.</span>
     </div>
-    <div id="bar-badge" style="font-size: 12px; font-weight: 700; color: var(--primary);">Jan 1 – Aug 31, 2026</div>
+    <div id="bar-badge" style="font-size: 12px; font-weight: 700; color: var(--primary);">Jan 1 - Aug 31, 2026</div>
   </div>
 
   <!-- Top 7 Platforms Dynamic KPI Grid -->
@@ -1209,7 +1209,7 @@
     // Update Banner
     document.getElementById('bar-pill').innerText = isArabic ? d.title_ar : d.title_en;
     document.getElementById('bar-text').innerText = isArabic ? d.highlight_ar : d.highlight_en;
-    document.getElementById('bar-badge').innerText = mKey === 'all' ? 'Jan 1 – Aug 31, 2026' : mKey;
+    document.getElementById('bar-badge').innerText = mKey === 'all' ? 'Jan 1 - Aug 31, 2026' : mKey;
 
     // Update KPIs
     document.getElementById('kpi-spend').innerText = d.meta_spend;
