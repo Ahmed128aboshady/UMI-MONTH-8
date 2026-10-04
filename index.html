@@ -140,20 +140,49 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
     }
     [data-theme="dark"] .active-month-bar { background: rgba(255,255,255,0.03); }
-    .bar-left { display: flex; align-items: center; gap: 12px; }
+    .bar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      min-width: 0;
+    }
     .bar-pill {
       background: var(--primary);
       color: #fff;
       font-size: 13px;
       font-weight: 800;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.4;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 2px 8px var(--primary-glow);
     }
-    .bar-text { font-size: 14px; color: var(--text-main); font-weight: 600; line-height: 1.5; }
+    .bar-text {
+      font-size: 13.5px;
+      color: var(--text-main);
+      font-weight: 600;
+      line-height: 1.6;
+      flex: 1;
+      min-width: 0;
+    }
+    #bar-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: rgba(190, 4, 99, 0.08);
+      padding: 5px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(190, 4, 99, 0.2);
+    }
     
     .kpi-grid {
       display: grid;
@@ -371,10 +400,10 @@
   <!-- Dynamic Active Month Banner -->
   <div class="active-month-bar">
     <div class="bar-left">
-      <span class="bar-pill" id="bar-pill">الفترة الحالية</span>
-      <span class="bar-text" id="bar-text">عرض شامل لكامل الفترة من يناير إلى أغسطس 2026 عبر 7 منصات.</span>
+      <span class="bar-pill" id="bar-pill">جميع الشهور (9 شهور)</span>
+      <span class="bar-text" id="bar-text">نظرة شاملة لكامل الـ 9 شهور الأولى (يناير – سبتمبر 2026): حققت الشركة نمواً تراكمياً هائلاً بوصول مدفوع قارب 3 مليون ظهور و 37.9 ألف نقرة مباشرة مع قفزة SEO تاريخية في سبتمبر.</span>
     </div>
-    <div id="bar-badge" style="font-size: 12px; font-weight: 700; color: var(--primary);">Jan 1 - Aug 31, 2026</div>
+    <div id="bar-badge">يناير – سبتمبر 2026 (9 شهور)</div>
   </div>
 
   <!-- Top 7 Platforms Dynamic KPI Grid -->
@@ -1358,9 +1387,60 @@
 
 <script>
   // Complete Data Source for Dynamic Filtering
-  const monthsData = {"all": {"title_ar": "جميع الشهور (يناير – سبتمبر 2026)", "title_en": "All Months (Jan – Sep 2026)", "meta_spend": "$1,770", "meta_spend_sub_ar": "AED 6,502 | 8 حملات ممولة", "meta_spend_sub_en": "AED 6,502 | 8 Sponsored Campaigns", "paid_impr": "2.95M", "paid_impr_sub_ar": "2.07M ميتا + 880K لينكدإن", "paid_impr_sub_en": "2.07M Meta + 880K LinkedIn", "paid_clicks": "36,838", "paid_clicks_sub_ar": "21.7K ميتا + 15K لينكدإن", "paid_clicks_sub_en": "21.7K Meta + 15K LinkedIn", "ga4_sessions": "20,422", "ga4_sub_ar": "5,122 متفاعلة (25.1%)", "ga4_sub_en": "5,122 Engaged (25.1%)", "ig_reach": "115.1K", "ig_sub_ar": "134 منشور | 5.7K زيارة بروفايل", "ig_sub_en": "134 Posts | 5.7K Profile Visits", "fb_views": "1.94M", "fb_sub_ar": "بيك مايو: 558K مشاهدة", "fb_sub_en": "May Peak: 558K Views", "li_followers": "18,164", "li_sub_ar": "88.5K ظهور عضوي | 3.4K مقال", "li_sub_en": "88.5K Organic Impr | 3.4K Articles", "maps_clicks": "+580", "maps_sub_ar": "+73.3% نمو سنوي بالنقرات", "maps_sub_en": "+73.3% YoY Click Growth", "seo_impr": "11,214", "seo_sub_ar": "34 نقرة عضوية | متوسط مركز 30", "seo_sub_en": "34 Organic Clicks | Pos 30", "leads_ar": "21 ليد مباشر", "leads_en": "21 Direct Leads", "highlight_ar": "نظرة شاملة لكامل الـ 8 شهور الأولى: حققت الشركة نمواً تراكمياً ضخماً بوصول مدفوع قرابة 3 مليون ظهور و 36.8 ألف نقرة مباشرة، مع قفزات تاريخية في ريلز فيسبوك في مايو ونقرات الخرائط في أبريل، وصولاً للبيك القياسي لزوار الموقع في أغسطس.", "highlight_en": "Full 8-Month Comprehensive Audit: Achieved massive growth with nearly 3 Million paid impressions, 36.8K direct clicks, historic Facebook Reels virality in May, Google Maps peak in April, and record website traffic in August.", "ga4_channels": [6017, 5029, 4253, 3190, 984, 114, 835], "ga4_badge_ar": "20,422 Sessions (إجمالي 8 شهور)", "ga4_badge_en": "20,422 Sessions (8-Month Total)", "meta_audit_spend_ar": "$1,770.56 (AED 6,502.40)", "meta_audit_spend_en": "$1,770.56 (AED 6,502.40)", "meta_audit_impr_ar": "2,072,529 ظهور رسمي", "meta_audit_impr_en": "2,072,529 Official Impressions", "meta_audit_reach_ar": "1,053,892 شخص فريد", "meta_audit_reach_en": "1,053,892 Unique Reach", "meta_audit_clicks_ar": "21,768 نقرة", "meta_audit_clicks_en": "21,768 Clicks", "meta_audit_cpc_ar": "$0.081 (تكلفة نقرة رائدة)", "meta_audit_cpc_en": "$0.081 (Industry-Leading CPC)", "meta_audit_best_ar": "مارس (CTR 3.11%) وأبريل (CTR 3.09%)", "meta_audit_best_en": "March (CTR 3.11%) & April (CTR 3.09%)", "meta_audit_badge_ar": "act_271200960590638 (إجمالي 8 شهور)", "meta_audit_badge_en": "act_271200960590638 (8-Month Total)"}, "2026-09": {
-  "title_ar": "شهر سبتمبر 2026 (تفعيل إعلانات ميتا & قفزة SEO تاريخية)",
-  "title_en": "September 2026 (Meta Ads Launch & Record SEO Peak)",
+  const monthsData = {"all": {
+    "title_ar": "جميع الشهور (9 شهور)",
+    "title_en": "All Months (Jan – Sep 2026)",
+    "meta_spend": "$1,887",
+    "meta_spend_sub_ar": "AED 6,929 | 12 حملة ممولة",
+    "meta_spend_sub_en": "AED 6,929 | 12 Sponsored Campaigns",
+    "paid_impr": "2.99M",
+    "paid_impr_sub_ar": "2.11M ميتا + 880K لينكدإن",
+    "paid_impr_sub_en": "2.11M Meta + 880K LinkedIn",
+    "paid_clicks": "37,949",
+    "paid_clicks_sub_ar": "22.9K ميتا + 15.1K لينكدإن",
+    "paid_clicks_sub_en": "22.9K Meta + 15.1K LinkedIn",
+    "ga4_sessions": "21,886",
+    "ga4_sub_ar": "5,677 متفاعلة (26.0%)",
+    "ga4_sub_en": "5,677 Engaged (26.0%)",
+    "ig_reach": "115.1K",
+    "ig_sub_ar": "148 منشور | 6.6K زيارة بروفايل",
+    "ig_sub_en": "148 Posts | 6.6K Profile Visits",
+    "fb_views": "1.94M",
+    "fb_sub_ar": "بيك مايو: 558K مشاهدة",
+    "fb_sub_en": "May Peak: 558K Views",
+    "li_followers": "18,452",
+    "li_sub_ar": "96.4K ظهور عضوي | 18.4K متابع",
+    "li_sub_en": "96.4K Organic Impr | 18.4K Followers",
+    "maps_clicks": "+684",
+    "maps_sub_ar": "+23.8% نمو سبتمبر | 104 نقرة",
+    "maps_sub_en": "+23.8% Sep Growth | 104 Clicks",
+    "seo_impr": "28,374",
+    "seo_sub_ar": "267 نقرة عضوية | قفزة سبتمبر 233 نقرة",
+    "seo_sub_en": "267 Organic Clicks | Sep Peak 233 Clicks",
+    "leads_ar": "38 ليد واستفسار",
+    "leads_en": "38 Inquiries & Leads",
+    "highlight_ar": "نظرة شاملة لكامل الـ 9 شهور الأولى (يناير – سبتمبر 2026): حققت الشركة نمواً تراكمياً هائلاً بوصول مدفوع قارب 3 مليون ظهور، و 37,949 نقرة إعلانية مباشرة بإجمالي صرف $1,886.66 (AED 6,928.76). وشهد سبتمبر قفزة SEO تاريخية بموقع الشركة محققاً 233 نقرة و 17,160 ظهور، مع وصول لينكدإن لـ 18,452 متابعاً، وكسر خرائط جوجل حاجز 1,030 مشاهدة بيك تاريخي.",
+    "highlight_en": "Comprehensive 9-Month Performance Audit (Jan – Sep 2026): Total paid reach neared 3 Million impressions with 37,949 ad clicks on Meta & LinkedIn ($1,886.66 spend). September delivered an all-time organic SEO breakthrough (233 clicks, 17,160 impr), LinkedIn reached 18,452 followers, and Google Maps achieved a record 1,030 views.",
+    "ga4_channels": [6672, 5032, 4371, 3638, 1013, 150, 1013],
+    "ga4_badge_ar": "21,886 جلسة (إجمالي 9 شهور يناير – سبتمبر)",
+    "ga4_badge_en": "21,886 Sessions (9-Month Total Jan – Sep)",
+    "meta_audit_spend_ar": "$1,886.66 (AED 6,928.76)",
+    "meta_audit_spend_en": "$1,886.66 (AED 6,928.76)",
+    "meta_audit_impr_ar": "2,112,975 ظهور رسمي",
+    "meta_audit_impr_en": "2,112,975 Official Impressions",
+    "meta_audit_reach_ar": "1,079,870 شخص فريد",
+    "meta_audit_reach_en": "1,079,870 Unique Reach",
+    "meta_audit_clicks_ar": "22,879 نقرة",
+    "meta_audit_clicks_en": "22,879 Clicks",
+    "meta_audit_cpc_ar": "$0.082 (تكلفة نقرة رائدة)",
+    "meta_audit_cpc_en": "$0.082 (Industry-Leading CPC)",
+    "meta_audit_best_ar": "سبتمبر (CTR 2.75%) وأبريل ($0.022 CPC)",
+    "meta_audit_best_en": "September (CTR 2.75%) & April ($0.022 CPC)",
+    "meta_audit_badge_ar": "act_271200960590638 (إجمالي 9 شهور)",
+    "meta_audit_badge_en": "act_271200960590638 (9-Month Total)"
+  }, "2026-09": {
+  "title_ar": "شهر سبتمبر 2026",
+  "title_en": "September 2026",
   "meta_spend": "$116.10",
   "meta_spend_sub_ar": "AED 426.32 | 4 حملات ممولة",
   "meta_spend_sub_en": "AED 426.32 | 4 Sponsored Campaigns",
@@ -1434,7 +1514,31 @@
     // Update Banner
     document.getElementById('bar-pill').innerText = isArabic ? d.title_ar : d.title_en;
     document.getElementById('bar-text').innerText = isArabic ? d.highlight_ar : d.highlight_en;
-    document.getElementById('bar-badge').innerText = mKey === 'all' ? 'Jan 1 - Aug 31, 2026' : mKey;
+    const badgeMapAr = {
+      'all': 'يناير – سبتمبر 2026 (9 شهور)',
+      '2026-09': '1 – 30 سبتمبر 2026',
+      '2026-08': '1 – 31 أغسطس 2026',
+      '2026-07': '1 – 31 يوليو 2026',
+      '2026-06': '1 – 30 يونيو 2026',
+      '2026-05': '1 – 31 مايو 2026',
+      '2026-04': '1 – 30 أبريل 2026',
+      '2026-03': '1 – 31 مارس 2026',
+      '2026-02': '1 – 28 فبراير 2026',
+      '2026-01': '1 – 31 يناير 2026'
+    };
+    const badgeMapEn = {
+      'all': 'Jan 1 – Sep 30, 2026 (9 Months)',
+      '2026-09': 'Sep 1 – Sep 30, 2026',
+      '2026-08': 'Aug 1 – Aug 31, 2026',
+      '2026-07': 'Jul 1 – Jul 31, 2026',
+      '2026-06': 'Jun 1 – Jun 30, 2026',
+      '2026-05': 'May 1 – May 31, 2026',
+      '2026-04': 'Apr 1 – Apr 30, 2026',
+      '2026-03': 'Mar 1 – Mar 31, 2026',
+      '2026-02': 'Feb 1 – Feb 28, 2026',
+      '2026-01': 'Jan 1 – Jan 31, 2026'
+    };
+    document.getElementById('bar-badge').innerText = isArabic ? (badgeMapAr[mKey] || mKey) : (badgeMapEn[mKey] || mKey);
 
     // Update KPIs with language check
     document.getElementById('kpi-spend').innerText = d.meta_spend;
