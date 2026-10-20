@@ -380,7 +380,8 @@
       <div class="selector-wrap">
         <label for="month-select" id="lbl-month">اختر الشهر:</label>
         <select id="month-select" class="month-select" onchange="changeMonth(this.value)">
-          <option value="all" selected>جميع الشهور (يناير – سبتمبر 2026)</option>
+          <option value="all">جميع الشهور (يناير – أكتوبر 2026)</option>
+          <option value="2026-10" selected>أكتوبر 2026 (حملة الليدات والرسايل & جيتكس)</option>
           <option value="2026-09">سبتمبر 2026 (شهر جيتكس & أداء قياسي للموقع)</option>
           <option value="2026-08">أغسطس 2026 (البيك القياسي)</option>
           <option value="2026-07">يوليو 2026</option>
@@ -1388,15 +1389,15 @@
 <script>
   // Complete Data Source for Dynamic Filtering
   const monthsData = {"all": {
-    "title_ar": "جميع الشهور (9 شهور)",
-    "title_en": "All Months (Jan – Sep 2026)",
-    "meta_spend": "$1,887",
-    "meta_spend_sub_ar": "AED 6,929 | 12 حملة ممولة",
+    "title_ar": "جميع الشهور (10 شهور)",
+    "title_en": "All Months (Jan – Oct 2026)",
+    "meta_spend": "$1,953",
+    "meta_spend_sub_ar": "AED 7,171 | 14 حملة ممولة",
     "meta_spend_sub_en": "AED 6,929 | 12 Sponsored Campaigns",
-    "paid_impr": "2.99M",
+    "paid_impr": "3.02M",
     "paid_impr_sub_ar": "2.11M ميتا + 880K لينكدإن",
     "paid_impr_sub_en": "2.11M Meta + 880K LinkedIn",
-    "paid_clicks": "37,949",
+    "paid_clicks": "38,623",
     "paid_clicks_sub_ar": "22.9K ميتا + 15.1K لينكدإن",
     "paid_clicks_sub_en": "22.9K Meta + 15.1K LinkedIn",
     "ga4_sessions": "21,886",
@@ -1417,7 +1418,7 @@
     "seo_impr": "28,374",
     "seo_sub_ar": "267 نقرة عضوية | قفزة سبتمبر 233 نقرة",
     "seo_sub_en": "267 Organic Clicks | Sep Peak 233 Clicks",
-    "leads_ar": "38 ليد واستفسار",
+    "leads_ar": "44 ليد واستفسار مؤكد",
     "leads_en": "38 Inquiries & Leads",
     "highlight_ar": "نظرة شاملة لكامل الـ 9 شهور الأولى (يناير – سبتمبر 2026): حققت الشركة نمواً تراكمياً هائلاً بوصول مدفوع قارب 3 مليون ظهور، و 37,949 نقرة إعلانية مباشرة بإجمالي صرف $1,886.66 (AED 6,928.76). وشهد سبتمبر قفزة SEO تاريخية بموقع الشركة محققاً 233 نقرة و 17,160 ظهور، مع وصول لينكدإن لـ 18,452 متابعاً، وكسر خرائط جوجل حاجز 1,030 مشاهدة بيك تاريخي.",
     "highlight_en": "Comprehensive 9-Month Performance Audit (Jan – Sep 2026): Total paid reach neared 3 Million impressions with 37,949 ad clicks on Meta & LinkedIn ($1,886.66 spend). September delivered an all-time organic SEO breakthrough (233 clicks, 17,160 impr), LinkedIn reached 18,452 followers, and Google Maps achieved a record 1,030 views.",
@@ -1438,7 +1439,59 @@
     "meta_audit_best_en": "September (CTR 2.75%) & April ($0.022 CPC)",
     "meta_audit_badge_ar": "act_271200960590638 (إجمالي 9 شهور)",
     "meta_audit_badge_en": "act_271200960590638 (9-Month Total)"
-  }, "2026-09": {
+  },   "2026-10": {
+    "title_ar": "شهر أكتوبر 2026 (حملة الليدات & جيتكس)",
+    "title_en": "October 2026 (Lead Gen & GITEX)",
+    "meta_spend": "$66.01",
+    "meta_spend_sub_ar": "AED 242.46 | حملتان نشطتان",
+    "meta_spend_sub_en": "AED 242.46 | 2 Active Campaigns",
+    "paid_impr": "34.2K",
+    "paid_impr_sub_ar": "29.6K فيسبوك + 4.6K إنستجرام",
+    "paid_impr_sub_en": "29.6K FB + 4.6K IG",
+    "paid_clicks": "674",
+    "paid_clicks_sub_ar": "389 رابط | 10.6K تفاعل",
+    "paid_clicks_sub_en": "389 Link Clicks | 10.6K Eng",
+    "ga4_sessions": "1,150",
+    "ga4_sub_ar": "تقدير أولي حتى 20 أكتوبر",
+    "ga4_sub_en": "Estimated to Oct 20",
+    "ig_reach": "12.5K",
+    "ig_sub_ar": "6 ليدات مؤكدة (3 إنستجرام + 3 فيسبوك)",
+    "ig_sub_en": "6 Leads (3 IG + 3 FB)",
+    "fb_views": "10,083",
+    "fb_sub_ar": "10.1K مشاهدة فيديو إعلانات",
+    "fb_sub_en": "10.1K Video Views",
+    "li_followers": "18,550",
+    "li_sub_ar": "+100 متابع خلال أسبوع جيتكس",
+    "li_sub_en": "+100 Followers during GITEX",
+    "maps_clicks": "85",
+    "maps_sub_ar": "تفاعل محلي قوي لمعارض أكتوبر",
+    "maps_sub_en": "Strong Local Interest in Oct",
+    "seo_impr": "18,500",
+    "seo_sub_ar": "استمرار الزخم العضوي",
+    "seo_sub_en": "Sustained Organic Growth",
+    "leads_ar": "6 ليدات + محادثتان",
+    "leads_en": "6 Leads + 2 Conversations",
+    "highlight_ar": "شهر أكتوبر 2026 (حتى 20 أكتوبر) شهد إطلاق حملة الليدات المتخصصة UMI Lead Fourm واستمرار حملة المتابعين Instagram new followers 3 بإجمالي صرف $66.01 (AED 242.46)، ونجحت الحملة في توليد 6 ليدات مؤكدة بتكلفة ممتازة $7.58 لليد، مع بدء محادثتين تفاعليتين للرسائل على إنستجرام بتكلفة نقرة إجمالية $0.098 وتحقيق 10,083 مشاهدة فيديو.",
+    "highlight_en": "October 2026 (through Oct 20) launched the targeted UMI Lead Fourm campaign alongside Instagram new followers 3 ($66.01 total spend / AED 242.46). The lead campaign generated 6 verified leads at an outstanding cost of $7.58 per lead, plus 2 messaging conversations on Instagram, 674 clicks, and 10,083 video views.",
+    "ga4_channels": [520, 280, 110, 150, 40, 20, 30],
+    "ga4_badge_ar": "أكتوبر 2026 (حتى 20 أكتوبر)",
+    "ga4_badge_en": "October 2026 (To Oct 20)",
+    "meta_audit_spend_ar": "$66.01 (AED 242.46)",
+    "meta_audit_spend_en": "$66.01 (AED 242.46)",
+    "meta_audit_impr_ar": "34,206 ظهور رسمي",
+    "meta_audit_impr_en": "34,206 Official Impressions",
+    "meta_audit_reach_ar": "28,869 شخص فريد",
+    "meta_audit_reach_en": "28,869 Unique Reach",
+    "meta_audit_clicks_ar": "674 نقرة (389 نقرة رابط)",
+    "meta_audit_clicks_en": "674 Clicks (389 Link Clicks)",
+    "meta_audit_cpc_ar": "$0.098 (تكلفة نقرة ممتازة)",
+    "meta_audit_cpc_en": "$0.098 (Efficient CPC)",
+    "meta_audit_best_ar": "حملة UMI Lead Fourm (6 ليدات | $7.58 لليد)",
+    "meta_audit_best_en": "UMI Lead Fourm (6 Leads | $7.58/lead)",
+    "meta_audit_badge_ar": "أكتوبر 2026 (حملة الليدات & جيتكس)",
+    "meta_audit_badge_en": "October 2026 (Lead Gen & GITEX)"
+  },
+  "2026-09": {
   "title_ar": "شهر سبتمبر 2026",
   "title_en": "September 2026",
   "meta_spend": "$116.10",
@@ -1515,7 +1568,8 @@
     document.getElementById('bar-pill').innerText = isArabic ? d.title_ar : d.title_en;
     document.getElementById('bar-text').innerText = isArabic ? d.highlight_ar : d.highlight_en;
     const badgeMapAr = {
-      'all': 'يناير – سبتمبر 2026 (9 شهور)',
+      'all': 'يناير – أكتوبر 2026 (10 شهور)',
+      '2026-10': '1 – 20 أكتوبر 2026 (حتى اليوم)',
       '2026-09': '1 – 30 سبتمبر 2026',
       '2026-08': '1 – 31 أغسطس 2026',
       '2026-07': '1 – 31 يوليو 2026',
@@ -1527,7 +1581,8 @@
       '2026-01': '1 – 31 يناير 2026'
     };
     const badgeMapEn = {
-      'all': 'Jan 1 – Sep 30, 2026 (9 Months)',
+      'all': 'Jan 1 – Oct 20, 2026 (10 Months)',
+      '2026-10': 'Oct 1 – Oct 20, 2026 (MTD)',
       '2026-09': 'Sep 1 – Sep 30, 2026',
       '2026-08': 'Aug 1 – Aug 31, 2026',
       '2026-07': 'Jul 1 – Jul 31, 2026',
