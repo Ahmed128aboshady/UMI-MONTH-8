@@ -251,9 +251,9 @@
 
     .tabs-nav {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 20px;
-      overflow-x: auto;
+      margin-bottom: 24px;
       padding-bottom: 6px;
     }
     .tab-btn {
@@ -483,13 +483,14 @@
 
   <!-- Navigation Tabs -->
   <div class="tabs-nav">
-    <button class="tab-btn active" onclick="switchTab('tab-roi')">ما تم دفعه والعائد (Spend & ROI Hub)</button>
-    <button class="tab-btn" onclick="switchTab('tab-overview')">النظرة الشاملة (Overview)</button>
-    <button class="tab-btn" onclick="switchTab('tab-ga4')">جوجل أنالتكس (GA4)</button>
-    <button class="tab-btn" onclick="switchTab('tab-meta-ads')">إعلانات ميتا (Meta Ads)</button>
-    <button class="tab-btn" onclick="switchTab('tab-linkedin')">شبكة لينكدإن (LinkedIn)</button>
-    <button class="tab-btn" onclick="switchTab('tab-social')">فيسبوك وإنستجرام (Social)</button>
-    <button class="tab-btn" onclick="switchTab('tab-seo-maps')">الخرائط والـ SEO (Maps & Search)</button>
+    <button class="tab-btn active" onclick="switchTab('tab-roi')">💰 ما تم دفعه والعائد (Spend & ROI Hub)</button>
+    <button class="tab-btn" onclick="switchTab('tab-overview')">🌐 النظرة الشاملة (Overview)</button>
+    <button class="tab-btn" onclick="switchTab('tab-ga4')">📊 جوجل أنالتكس (GA4)</button>
+    <button class="tab-btn" onclick="switchTab('tab-meta-ads')">🎯 إعلانات ميتا (Meta Ads)</button>
+    <button class="tab-btn" onclick="switchTab('tab-linkedin')">💼 شبكة لينكدإن (LinkedIn)</button>
+    <button class="tab-btn" onclick="switchTab('tab-social')">📱 فيسبوك وإنستجرام (Social)</button>
+    <button class="tab-btn" onclick="switchTab('tab-brevo')">📧 إيميل ماركتنج (Brevo Email)</button>
+    <button class="tab-btn" onclick="switchTab('tab-seo-maps')">🔍 محركات البحث والـ SEO (Search & Maps)</button>
   </div>
 
   <!-- TAB: SPEND & ROI HUB -->
@@ -1298,6 +1299,222 @@
   </div>
 
   <!-- TAB 7: SEO & MAPS -->
+  
+  <!-- TAB: Brevo Email Marketing Campaigns -->
+  <div id="tab-brevo" class="tab-pane">
+    <!-- Header Banner -->
+    <div class="card" style="margin-bottom: 24px; background: linear-gradient(135deg, #0b1528 0%, #172a4d 100%); color: #ffffff; border: 1px solid rgba(255,255,255,0.1);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <span style="background: rgba(14, 165, 233, 0.2); color: #38bdf8; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">BREVO OFFICIAL AUDIT</span>
+          <h2 style="margin: 8px 0 4px 0; font-size: 22px; color: #ffffff;">📧 تقرير حملات البريد الإلكتروني لشهر أكتوبر 2026 (Brevo Email Campaigns)</h2>
+          <p style="margin: 0; color: #94a3b8; font-size: 13px;">تحليل شامل لـ 10 حملات إيميل رسمية استهدفت العارضين وصناع القرار في كبرى معارض دبي والإمارات</p>
+        </div>
+        <div style="text-align: left;">
+          <span style="font-size: 28px; font-weight: 800; color: #38bdf8;">9,720</span>
+          <span style="display: block; font-size: 12px; color: #cbd5e1;">إجمالي المستلمين (100% تسليم)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI Cards Row -->
+    <div class="grid-4" style="margin-bottom: 24px;">
+      <div class="card" style="border-right: 4px solid #3b82f6;">
+        <span class="stat-label">إجمالي الحملات المعرضية</span>
+        <span class="stat-val" style="color: #3b82f6;">10 حملات</span>
+        <span class="stat-sub">تغطية معارض Q4 وجيتكس</span>
+      </div>
+      <div class="card" style="border-right: 4px solid #10b981;">
+        <span class="stat-label">مرات الفتح الفريدة (Opens)</span>
+        <span class="stat-val" style="color: #10b981;">3,302 فتح</span>
+        <span class="stat-sub">معدل فتح قياسي <strong>33.97%</strong> (+70% عن متوسط السوق)</span>
+      </div>
+      <div class="card" style="border-right: 4px solid #f59e0b;">
+        <span class="stat-label">النقرات المباشرة (Clicks)</span>
+        <span class="stat-val" style="color: #f59e0b;">3,939 نقرة</span>
+        <span class="stat-sub">معدل نقر استثنائي <strong>40.52% CTR</strong></span>
+      </div>
+      <div class="card" style="border-right: 4px solid #ef4444;">
+        <span class="stat-label">إلغاء الاشتراك (Unsubscribes)</span>
+        <span class="stat-val" style="color: #64748b;">20 فقط (0.21%)</span>
+        <span class="stat-sub">قائمة بريدية مستهدفة ونظيفة 100%</span>
+      </div>
+    </div>
+
+    <!-- Campaigns Performance Table -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="card-title">
+        <span>تفصيل أداء الـ 10 حملات البريدية لشهر أكتوبر 2026 (مرتبة حسب أعلى تفاعل ونقرات)</span>
+        <span class="badge" style="background: #e0f2fe; color: #0369a1;">10 Verified Campaigns</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>اسم الحملة المعرضية</th>
+              <th>تاريخ الإرسال</th>
+              <th>المستلمين (Recipients)</th>
+              <th>مرات الفتح (Opens)</th>
+              <th>نسبة الفتح (Open Rate)</th>
+              <th>النقرات المباشرة (Clicks)</th>
+              <th>إلغاء الاشتراك</th>
+              <th>الحالة / الأداء</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: rgba(16, 185, 129, 0.04);">
+              <td class="hl-col"><strong>Gitex 2026 STAGE 3</strong> 🏆</td>
+              <td>13 أكتوبر 2026</td>
+              <td>1,833</td>
+              <td><strong>640</strong></td>
+              <td><span class="tag-cell tag-green">34.9%</span></td>
+              <td><strong style="color: var(--primary);">881 نقرة</strong></td>
+              <td>2</td>
+              <td><span class="badge" style="background: #dcfce7; color: #15803d;">🔥 الأعلى نقرات وتفاعلاً</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>Big 5 Global 2026 STAGE 3</strong></td>
+              <td>13 أكتوبر 2026</td>
+              <td>2,136</td>
+              <td><strong>645</strong></td>
+              <td><span class="tag-cell tag-green">30.2%</span></td>
+              <td><strong style="color: var(--primary);">796 نقرة</strong></td>
+              <td>4</td>
+              <td><span class="badge" style="background: #dbeafe; color: #1e40af;">أكبر حملة مستهدفة</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>ADIPEC 2026 stage 3</strong></td>
+              <td>13 أكتوبر 2026</td>
+              <td>1,256</td>
+              <td><strong>462</strong></td>
+              <td><span class="tag-cell tag-green">36.8%</span></td>
+              <td><strong style="color: var(--primary);">669 نقرة</strong></td>
+              <td>5</td>
+              <td><span class="badge" style="background: #fef3c7; color: #92400e;">قطاع الطاقة والنفط</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>World Utilities Congress STAGE 3</strong></td>
+              <td>13 أكتوبر 2026</td>
+              <td>842</td>
+              <td><strong>302</strong></td>
+              <td><span class="tag-cell tag-green">35.9%</span></td>
+              <td><strong style="color: var(--primary);">384 نقرة</strong></td>
+              <td>1</td>
+              <td><span class="tag-cell tag-green">35.9% Open Rate</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>Dubai International Boat Show</strong></td>
+              <td>13 أكتوبر 2026</td>
+              <td>1,174</td>
+              <td><strong>414</strong></td>
+              <td><span class="tag-cell tag-green">35.3%</span></td>
+              <td><strong style="color: var(--primary);">371 نقرة</strong></td>
+              <td>4</td>
+              <td><span class="tag-cell tag-green">35.3% Open Rate</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>World Police Summit stage 3</strong></td>
+              <td>13 أكتوبر 2026</td>
+              <td>972</td>
+              <td><strong>354</strong></td>
+              <td><span class="tag-cell tag-green">36.4%</span></td>
+              <td><strong style="color: var(--primary);">342 نقرة</strong></td>
+              <td>0</td>
+              <td><span class="tag-cell tag-green">0 Unsubscribes</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>Automechanika Dubai 2026 stage 3</strong></td>
+              <td>15 أكتوبر 2026</td>
+              <td>1,130</td>
+              <td><strong>363</strong></td>
+              <td><span class="tag-cell tag-green">32.1%</span></td>
+              <td><strong style="color: var(--primary);">332 نقرة</strong></td>
+              <td>2</td>
+              <td><span class="tag-cell tag-green">32.1% Open Rate</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>The World Tobacco Middle East stage 3</strong></td>
+              <td>15 أكتوبر 2026</td>
+              <td>207</td>
+              <td><strong>67</strong></td>
+              <td><span class="tag-cell tag-green">32.4%</span></td>
+              <td><strong>82 نقرة</strong></td>
+              <td>1</td>
+              <td><span class="tag-cell">حملة متخصصة</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>World Utilities Congress stage 2</strong></td>
+              <td>4 أكتوبر 2026</td>
+              <td>85</td>
+              <td><strong>23</strong></td>
+              <td><span class="tag-cell">27.1%</span></td>
+              <td><strong>74 نقرة</strong></td>
+              <td>1</td>
+              <td><span class="tag-cell">مرحلة تمهيدية</span></td>
+            </tr>
+            <tr>
+              <td class="hl-col"><strong>The World Vape Show Dubai stage 3</strong></td>
+              <td>15 أكتوبر 2026</td>
+              <td>85</td>
+              <td><strong>32</strong></td>
+              <td><span class="tag-cell tag-green">37.6%</span></td>
+              <td><strong>8 نقرات</strong></td>
+              <td>0</td>
+              <td><span class="tag-cell tag-green">0 Unsubscribes</span></td>
+            </tr>
+            <tr style="background: #f8fafc; font-weight: bold; border-top: 2px solid #cbd5e1;">
+              <td><strong>الإجمالي التراكمي (Total)</strong></td>
+              <td>أكتوبر 2026</td>
+              <td><strong>9,720</strong></td>
+              <td><strong style="color: #10b981;">3,302</strong></td>
+              <td><span class="badge" style="background: #dcfce7; color: #15803d; font-size: 13px;">33.97% Open</span></td>
+              <td><strong style="color: var(--primary); font-size: 15px;">3,939 نقرة</strong></td>
+              <td><strong>20 (0.21%)</strong></td>
+              <td><span class="badge" style="background: #38bdf8; color: #0c4a6e;">أداء قياسي شامل</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Integration & Insights Two-Column Grid -->
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">
+          <span>ربط أداء الإيميل بـ Google Analytics 4 (GA4) والمبيعات</span>
+          <span class="badge" style="background: #e0f2fe; color: #0284c7;">Direct Traffic Attribution</span>
+        </div>
+        <ul style="line-height: 1.8; font-size: 13.5px; color: var(--text-main); padding-right: 18px; margin: 0;">
+          <li><strong>تفسير جلسات الـ Email في GA4:</strong> حقق الموقع <strong>172 جلسة مباشرة موثقة</strong> دخلت الموقع عبر روابط الإيميل في شهر أكتوبر نتيجة للـ 3,939 نقرة المسجلة في Brevo.</li>
+          <li><strong>جودة الترافيك ونية الشراء:</strong> معدل التفاعل (Engagement Rate) لزوار الإيميل تجاوز <strong>64%</strong>، مع قضاء أكثر من دقيقتين في تصفح سابقة أعمال المعارض ونماذج طلب الكوتيشن.</li>
+          <li><strong>تغذية خط المبيعات (CRM Pipeline):</strong> حملات GITEX و ADIPEC عبر الإيميل كانت المحرك الرئيسي للطلبات المباشرة التي وردت من شركات مثل Schneider Electric و BHM Capital.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>الخطة القادمة وتوسيع حملات Brevo (November & Q4)</span>
+          <span class="badge" style="background: #fef3c7; color: #b45309;">Scheduled & Next Steps</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">حملة جيتكس القادمة (Gitex 2026 STAGE 4)</span>
+          <span class="stat-val" style="color: #10b981;">مجدولة ومعدة للإرسال</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">حجم قاعدة البيانات النشطة في Brevo</span>
+          <span class="stat-val">28,522 جهة اتصال مفلترة</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">الهدف لشهر نوفمبر</span>
+          <span class="stat-val">إطلاق حملات Big 5 المرحلة الرابعة ومتابعة عروض أسعار جيتكس</span>
+        </div>
+        <div style="margin-top: 15px; padding: 12px; background: #ecfdf5; border-radius: 8px; font-size: 13px; color: #065f46;">
+          💡 <strong>توصية:</strong> إعادة استهداف (Retargeting) الأشخاص الذين فتحوا ونقروا على إيميل Gitex و Big 5 (أكثر من 1,600 عارض مهتم) برسائل واتساب مباشرة للحصول على أعلى نسبة إغلاق صفقات.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="tab-seo-maps" class="tab-pane">
     <div class="two-col">
       <div class="card">
